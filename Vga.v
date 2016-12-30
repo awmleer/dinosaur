@@ -18,10 +18,11 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module Vga (vga_clk,clrn,d_in,row_addr,col_addr,rdn,r,g,b,hs,vs); // vgac
+module Vga (vga_clk,clrn,d_in,row_addr,col_addr,rdn,r,g,b,hs,vs,px_ground); // vgac
    input     [11:0] d_in;     // bbbb_gggg_rrrr, pixel
    input            vga_clk;  // 25MHz
    input            clrn;
+   input [319:0] px_ground;
    output reg [8:0] row_addr; // pixel ram row address, 480 (512) lines
    output reg [9:0] col_addr; // pixel ram col address, 640 (1024) pixels
    output reg [3:0] r,g,b; // red, green, blue colors
@@ -60,6 +61,17 @@ module Vga (vga_clk,clrn,d_in,row_addr,col_addr,rdn,r,g,b,hs,vs); // vgac
                          (h_count < 10'd783) && //        640 pixels
                          (v_count > 10'd34)  && //  35 -> 514
                          (v_count < 10'd515);   //        480 lines
+    
+    //px calculate
+    //1 stands for black, 0 stands for white
+    wire px;
+    //ground area
+    if (col_addr>=400 && col_addr<8) begin
+      px=0;
+    end else begin
+      px=1;
+    end
+
     // vga signals
     always @ (posedge vga_clk) begin
         row_addr <=  row[8:0]; // pixel ram row address
@@ -67,8 +79,9 @@ module Vga (vga_clk,clrn,d_in,row_addr,col_addr,rdn,r,g,b,hs,vs); // vgac
         rdn      <= ~read;     // read pixel (active low)
         hs       <=  h_sync;   // horizontal synchronization
         vs       <=  v_sync;   // vertical   synchronization
-        r        <=  rdn ? 4'h0 : d_in[3:0]; // 3-bit red
-        g        <=  rdn ? 4'h0 : d_in[7:4]; // 3-bit green
-        b        <=  rdn ? 4'h0 : d_in[11:8]; // 2-bit blue
+
+        r        <=  rdn ? 4'h0 : px?4'b0000:4'b1111; // 3-bit red
+        g        <=  rdn ? 4'h0 : px?4'b0000:4'b1111; // 3-bit green
+        b        <=  rdn ? 4'h0 : px?4'b0000:4'b1111; // 2-bit blue
     end
 endmodule

@@ -23,10 +23,10 @@ module Top(
     input wire BTN_JUMP,
     input [15:0]SW,
     output hs,
-	output vs,
-	output [3:0] r,
-	output [3:0] g,
-	output [3:0] b,
+    output vs,
+    output [3:0] r,
+    output [3:0] g,
+    output [3:0] b,
     output wire BUZZER
     //output reg [31:0]clkdiv,
     //output wire [15:0] SW_OK,
@@ -52,24 +52,19 @@ module Top(
     Ground ground (.CLK(CLK),.ground_position(ground_position),.game_status(game_status),.speed(speed));
 
 
-    wire [11:0] vga_data;
-    wire [9:0] col_addr;
- 	wire [8:0] row_addr;
-    assign vga_data[11:0]=12'b101100000011;//for DEBUG
+    //wire [11:0] vga_data;
+    //assign vga_data[11:0]=12'b101100000011;//for DEBUG
     Vga vga (
     .vga_clk(clkdiv[1]),
     .clrn(SW_OK[0]),
     .d_in(vga_data),
-    .row_addr(row_addr),
-    .col_addr(col_addr),
     .r(r),
     .g(g),
     .b(b),
     .hs(hs),
     .rdn(rdn),
     .vs(vs)
-	);
-    //todo VGA
+    );
 
 
     assign BUZZER=1'b1;
