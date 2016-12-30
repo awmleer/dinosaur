@@ -57,7 +57,6 @@ module Top(
     Vga vga (
     .vga_clk(clkdiv[1]),
     .clrn(SW_OK[0]),
-    .d_in(vga_data),
     .r(r),
     .g(g),
     .b(b),
