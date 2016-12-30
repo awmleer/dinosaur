@@ -40,6 +40,7 @@ module vga_sim;
 	wire vs;
     wire px;
 
+
 	// Instantiate the Unit Under Test (UUT)
 	Vga uut (
 		.vga_clk(vga_clk), 
