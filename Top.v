@@ -32,6 +32,18 @@ module Top(
 
     Ground ground (.CLK(CLK),.ground_position(ground_position),.game_status(game_status),.speed(speed));
 
+    Vga vga (
+    .vga_clk(clkdiv[1]),
+    .clrn(SW_OK[0]),
+    .d_in(vga_data),
+    .row_addr(row_addr),
+    .col_addr(col_addr),
+    .r(r),
+    .g(g),
+    .b(b),
+    .hs(hs),
+    .vs(vs)
+	);
     //todo VGA
 
     initial begin
