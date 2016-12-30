@@ -1,0 +1,28 @@
+Command line:
+   AntiJitter_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  7825
+
+Fri Dec 30 19:21:35 2016
+
+
+ Elaboration Time: 0.140401 sec
+
+ Current Memory Usage: 697.405 Meg
+
+ Total Signals          : 15
+ Total Nets             : 16
+ Total Signal Drivers   : 6
+ Total Blocks           : 2
+ Total Primitive Blocks : 2
+ Total Processes        : 8
+ Total Traceable Variables  : 21
+ Total Scalar Nets and Variables : 149
+
+ Total Simulation Time: 0.171602 sec
+
+ Current Memory Usage: 697.405 Meg
+
+Fri Dec 30 19:21:52 2016
+

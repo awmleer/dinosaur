@@ -28,6 +28,9 @@ module Top(
 	output [3:0] g,
 	output [3:0] b,
     output wire BUZZER
+    //output reg [31:0]clkdiv,
+    //output wire [15:0] SW_OK,
+    //output wire rdn
     );
     
     wire [5:0] dinosaur_height;
@@ -41,14 +44,20 @@ module Top(
 	end
     
     wire [15:0] SW_OK;
-    AntiJitter #(4) a0[15:0](.clk(clkdiv[15]), .I(SW), .O(SW_OK));
+    //AntiJitter #(4) a0[15:0](.clk(clkdiv[15]), .I(SW), .O(SW_OK));
+    AntiJitter #(4) a0[15:0](.clk(clkdiv[0]), .I(SW), .O(SW_OK));//for DEBUG
 
     Jump jump (.CLK(CLK),.button_jump(BTN_JUMP),.dinosaur_height(dinosaur_height),.game_status(game_status));
 
     Ground ground (.CLK(CLK),.ground_position(ground_position),.game_status(game_status),.speed(speed));
 
+
+    wire [11:0] vga_data;
+    wire [9:0] col_addr;
+ 	wire [8:0] row_addr;
+    assign vga_data[11:0]=12'b101100000011;//for DEBUG
     Vga vga (
-    .vga_clk(CLK),
+    .vga_clk(clkdiv[1]),
     .clrn(SW_OK[0]),
     .d_in(vga_data),
     .row_addr(row_addr),
@@ -57,12 +66,15 @@ module Top(
     .g(g),
     .b(b),
     .hs(hs),
+    .rdn(rdn),
     .vs(vs)
 	);
     //todo VGA
 
 
     assign BUZZER=1'b1;
-    
+    initial begin
+        clkdiv<=32'b0;
+    end
 
 endmodule

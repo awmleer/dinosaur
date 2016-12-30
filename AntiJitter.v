@@ -24,8 +24,7 @@ module AntiJitter(
 	parameter WIDTH = 20;
 	reg [WIDTH-1:0] cnt = 0;
 
-	always @ (posedge clk)
-	begin
+	always @ (posedge clk) begin
 		if(I)
 		begin
 			if(&cnt)
