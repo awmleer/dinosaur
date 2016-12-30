@@ -38,6 +38,7 @@ module vga_sim;
 	wire [3:0] b;
 	wire hs;
 	wire vs;
+    wire px;
 
 	// Instantiate the Unit Under Test (UUT)
 	Vga uut (
@@ -51,7 +52,8 @@ module vga_sim;
 		.b(b), 
 		.hs(hs), 
 		.vs(vs), 
-		.px_ground(px_ground)
+		.px_ground(px_ground),
+        .px(px)
 	);
 
 	initial begin
