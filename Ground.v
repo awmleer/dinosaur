@@ -20,9 +20,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 module Ground (
     input wire CLK,
-    input reg [5:0] ground_position,
-    input reg game_status,
-    input reg [3:0] speed
+    output reg [5:0] ground_position,
+    input wire game_status,
+    output reg [3:0] speed
     );
     
     //ground 是由16块重复图案组成的，每块图案宽度为40px
@@ -35,6 +35,12 @@ module Ground (
                 ground_position<=6'b0;
             end
         end
+    end
+    
+    
+    initial begin
+        speed<=1'd4;
+        ground_position<=6'b0;
     end
 
     

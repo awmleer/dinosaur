@@ -21,8 +21,8 @@
 module Jump (
     input wire CLK,
     input wire button_jump,
-    input reg [5:0] dinosaur_height,
-    input reg game_status
+    output reg [5:0] dinosaur_height,
+    output reg game_status
     );
     
     always @(posedge CLK) begin
@@ -34,6 +34,11 @@ module Jump (
                 dinosaur_height<=dinosaur_height+1'b1;//todo 需要加速度
             end
         end
+    end
+    
+    initial begin
+        game_status<=1'b0;
+        dinosaur_height<=6'b0;
     end
     
 endmodule
