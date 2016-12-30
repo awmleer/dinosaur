@@ -1,31 +1,38 @@
-Running: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o C:/Users/CST/Desktop/dinosaur/top_sim_isim_beh.exe -prj C:/Users/CST/Desktop/dinosaur/top_sim_beh.prj work.top_sim work.glbl 
+Running: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o C:/Users/CST/Desktop/dinosaur/vga_sim_isim_beh.exe -prj C:/Users/CST/Desktop/dinosaur/vga_sim_beh.prj work.vga_sim work.glbl 
 ISim P.20131013 (signature 0x8ef4fb42)
 Number of CPUs detected in this system: 2
 Turning on mult-threading, number of parallel sub-compilation jobs: 4 
 Determining compilation order of HDL files
 Analyzing Verilog file "C:/Users/CST/Desktop/dinosaur/Vga.v" into library work
-Analyzing Verilog file "C:/Users/CST/Desktop/dinosaur/Jump.v" into library work
-Analyzing Verilog file "C:/Users/CST/Desktop/dinosaur/Ground.v" into library work
-WARNING:HDLCompiler:568 - "C:/Users/CST/Desktop/dinosaur/Ground.v" Line 31: Constant value is truncated to fit in <2> bits.
-WARNING:HDLCompiler:568 - "C:/Users/CST/Desktop/dinosaur/Ground.v" Line 42: Constant value is truncated to fit in <1> bits.
-Analyzing Verilog file "C:/Users/CST/Desktop/dinosaur/AntiJitter.v" into library work
-Analyzing Verilog file "C:/Users/CST/Desktop/dinosaur/Top.v" into library work
-Analyzing Verilog file "C:/Users/CST/Desktop/dinosaur/top_sim.v" into library work
+<<<<<<< HEAD
+=======
+WARNING:HDLCompiler:568 - "C:/Users/CST/Desktop/dinosaur/Vga.v" Line 85: Constant value is truncated to fit in <3> bits.
+>>>>>>> 231fca1edce4b97306984e497da3c25096c51c2b
+Analyzing Verilog file "C:/Users/CST/Desktop/dinosaur/vga_sim.v" into library work
 Analyzing Verilog file "C:/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
 Completed static elaboration
-Fuse Memory Usage: 105800 KB
+<<<<<<< HEAD
+Fuse Memory Usage: 105224 KB
+Fuse CPU Usage: 280 ms
+=======
+Fuse Memory Usage: 105608 KB
 Fuse CPU Usage: 327 ms
-Compiling module AntiJitter(WIDTH=4)
-Compiling module Jump
-Compiling module Ground
+>>>>>>> 231fca1edce4b97306984e497da3c25096c51c2b
 Compiling module Vga
-Compiling module Top_default
-Compiling module top_sim
+Compiling module vga_sim
 Compiling module glbl
 Time Resolution for simulation is 1ps.
+<<<<<<< HEAD
 Waiting for 4 sub-compilation(s) to finish...
-Compiled 7 Verilog Units
-Built simulation executable C:/Users/CST/Desktop/dinosaur/top_sim_isim_beh.exe
-Fuse Memory Usage: 110392 KB
-Fuse CPU Usage: 389 ms
+Compiled 3 Verilog Units
+Built simulation executable C:/Users/CST/Desktop/dinosaur/vga_sim_isim_beh.exe
+Fuse Memory Usage: 110840 KB
+Fuse CPU Usage: 327 ms
+=======
+Waiting for 1 sub-compilation(s) to finish...
+Compiled 3 Verilog Units
+Built simulation executable C:/Users/CST/Desktop/dinosaur/vga_sim_isim_beh.exe
+Fuse Memory Usage: 110200 KB
+Fuse CPU Usage: 358 ms
+>>>>>>> 231fca1edce4b97306984e497da3c25096c51c2b
