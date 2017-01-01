@@ -76,7 +76,7 @@ module Jump (
         end
     end
 
-    always @(posedge RESET or posedge button_jump) begin
+    always @(posedge button_jump) begin
         if (RESET) begin
         pattern[81:0]<=82'b0000000000_0000000000_0000000000_0000000000_0000000011_1111111111_1111111111_1111111100_00;
         pattern[163:82]<=82'b0000000000_0000000000_0000000000_0000000000_0000000011_1111111111_1111111111_1111111100_00;
@@ -169,7 +169,9 @@ module Jump (
         game_status<=1'b0;//for DEBUG
         end
         if (button_jump) begin
-            game_status<=1'b1;
+            if(game_status==1'b0)begin
+                game_status<=1'b1;
+            end
         end
     end
     
