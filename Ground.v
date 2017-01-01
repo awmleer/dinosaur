@@ -25,6 +25,7 @@ module Ground (
     input wire [9:0] col_addr,
     output reg [5:0] ground_position,
     input wire game_status,
+    input wire fresh,
     output reg [3:0] speed=3'b001,
 	 //reg [319:0] pattern,
     //output reg [319:0] px
@@ -50,7 +51,7 @@ module Ground (
    //     ground_position<=6'b0;
    // end
 
-    always @(posedge clkdiv[14]) begin
+    always @(negedge fresh) begin
         if (game_status) begin
             ground_position<=(ground_position+speed)%10'd40;
         end
@@ -87,7 +88,7 @@ module Ground (
             // end
             // pattern[319:0]=px[319:0];
         end else begin
-            speed<=10'd4;
+            speed<=10'd1;
             // px[316:4]=pattern[315:0];
             // px[3:0]=pattern[319:316];
             pattern[39:0]<=40'b0000000000000000000111100000000000000000;

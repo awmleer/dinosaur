@@ -32,9 +32,10 @@ module Jump (
     end
     always @(posedge CLK) begin
         if (game_status) begin
-            if (button_jump) begin//for DEBUG
-                game_status<=1'b0;
-            end
+            game_status<=1'b1;
+            //if (button_jump) begin//for DEBUG
+            //    game_status<=1'b0;
+            //end
             //this is useful !!!!:
             // if (button_jump && (&dinosaur_height[5:0])) begin
             //     dinosaur_height<=6'b000101;
