@@ -63,7 +63,7 @@ module Ground (
             end else begin
                 px <= 1'b0;
             end
-            ground_position<=(ground_position+speed)%3'd40;
+            ground_position<=(ground_position+speed)%10'd40;
             //NO NEED:
             // if(ground_position+speed<3'd40)begin
             //     ground_position<=ground_position+speed;
