@@ -48,6 +48,9 @@
 # Location Constraints                                                     #
 ############################################################################
     NET "CLK"                                      LOC = AC18      | IOSTANDARD = LVCMOS18 ;
+    
+    NET "BTN_JUMP[0]" LOC = AE21   	| IOSTANDARD = LVCMOS18;
+    NET "BTN_JUMP[1]" LOC = AF25   	| IOSTANDARD = LVCMOS18;
     #NET "rstn"                                     LOC = W13       | IOSTANDARD = LVCMOS18 ;
 
     #NET "segled_clk"                               LOC = M24       | IOSTANDARD = LVCMOS33 ;
@@ -86,7 +89,7 @@
     NET "SW[13]"                                   LOC = AE13      | IOSTANDARD = LVCMOS15 ;
     NET "SW[14]"                                   LOC = AF13      | IOSTANDARD = LVCMOS15 ;
     NET "SW[15]"                                   LOC = AF10      | IOSTANDARD = LVCMOS15 ;
-	NET "BUZZER" LOC = AF24 | IOSTANDARD = LVCMOS33;
+	//NET "BUZZER" LOC = AF24 | IOSTANDARD = LVCMOS33;
 
 
 
@@ -104,4 +107,9 @@
     NET "r[3]"                                 LOC = P21       | IOSTANDARD = LVCMOS33 | SLEW = FAST ;
     NET "hs"                                       LOC = M22       | IOSTANDARD = LVCMOS33 | SLEW = FAST ;
     NET "vs"                                       LOC = M21       | IOSTANDARD = LVCMOS33 | SLEW = FAST ;
+    
+    
+
+
+    
 ############################################################################

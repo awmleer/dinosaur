@@ -20,14 +20,14 @@
 //////////////////////////////////////////////////////////////////////////////////
 module Top(
     input wire CLK,
-    input wire BTN_JUMP,
+    input wire [1:0] BTN_JUMP,
     input [15:0]SW,
     output hs,
     output vs,
     output [3:0] r,
     output [3:0] g,
-    output [3:0] b,
-    output wire BUZZER
+    output [3:0] b
+    //output wire BUZZER
     //output reg [31:0]clkdiv,
     //output wire [15:0] SW_OK,
     //output wire rdn
@@ -49,7 +49,7 @@ module Top(
     //AntiJitter #(4) a0[15:0](.clk(clkdiv[15]), .I(SW), .O(SW_OK));
     AntiJitter #(4) a0[15:0](.clk(clkdiv[0]), .I(SW), .O(SW_OK));//for DEBUG
 
-    Jump jump (.CLK(CLK),.button_jump(BTN_JUMP),.dinosaur_height(dinosaur_height),.game_status(game_status));
+    Jump jump (.CLK(CLK),.button_jump(BTN_JUMP[0]),.dinosaur_height(dinosaur_height),.game_status(game_status));
 
     wire px_ground;
     Ground ground (.CLK(clkdiv[0]),.row_addr(row_addr),.col_addr(col_addr),.ground_position(ground_position),.game_status(game_status),.speed(speed),.px(px_ground));
@@ -72,7 +72,7 @@ module Top(
     );
 
 
-    assign BUZZER=1'b1;
+    //assign BUZZER=1'b1;
     initial begin
         clkdiv<=32'b0;
     end
