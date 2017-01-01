@@ -1,1 +1,0 @@
--intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "C:/Users/CST/Desktop/dinosaur/vga_sim_isim_beh.exe" -prj "C:/Users/CST/Desktop/dinosaur/vga_sim_beh.prj" "work.vga_sim" "work.glbl" 

@@ -1,5 +1,10 @@
 # intermediate build files
 /isim/
+*.log
+*.xms
+*.cmd
+*.exe
+*.wdb
 *.bgn
 *.bit
 *.bld
