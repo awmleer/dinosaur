@@ -23,10 +23,10 @@ module Ground (
     input wire N_rst,
     input wire [8:0] row_addr,
     input wire [9:0] col_addr,
-    output reg [5:0] ground_position,
+    output reg [9:0] ground_position,
     input wire game_status,
     input wire fresh,
-    output reg [3:0] speed=3'b001,
+    output reg [3:0] speed,
 	 //reg [319:0] pattern,
     //output reg [319:0] px
     output reg px
@@ -71,7 +71,7 @@ module Ground (
         if (game_status) begin
             if (row_addr>=10'd400 && row_addr<10'd408) begin
                 //ground_position=(ground_position+speed)%10'd40;
-                px <= pattern[(col_addr+ground_position)%10'd160+(row_addr-10'd400)*10'd160];
+                px <= pattern[(col_addr+ground_position)%10'd160+(row_addr-10'd400)*12'd160];
                 //px <= pattern[(col_addr%10'd40+ground_position+(row_addr-10'd400)*40)%10'd320];
                 //px <= 1'b1;
             end else begin
@@ -104,7 +104,7 @@ module Ground (
     end
     
     initial begin
-        ground_position<=6'b0;
+        ground_position<=10'b0;
     end
     
     //Maybe we don't need this:
