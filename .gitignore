@@ -1,5 +1,6 @@
 # intermediate build files
 /isim/
+*.xmsgs
 *.log
 *.xms
 *.cmd

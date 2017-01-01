@@ -19,13 +19,13 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module Ground (
-    input wire CLK,
+    input wire [31:0] clkdiv,
     input wire N_rst,
     input wire [8:0] row_addr,
     input wire [9:0] col_addr,
     output reg [5:0] ground_position,
     input wire game_status,
-    output reg [3:0] speed,
+    output reg [3:0] speed=3'b001,
 	 //reg [319:0] pattern,
     //output reg [319:0] px
     output reg px
@@ -44,10 +44,21 @@ module Ground (
 	 end
      */
     //ground ??16??ظ?ͼ????ɵģ?ÿ?????????40pattern
-    always @(posedge CLK) //begin
+    
+   // initial begin
+   //     speed<=1'd1;
+   //     ground_position<=6'b0;
+   // end
+
+    always @(posedge clkdiv[14]) begin
+        if (game_status) begin
+            ground_position<=(ground_position+speed)%10'd40;
+        end
+    end
+
+    always @(posedge clkdiv[0]) //begin
     begin
-        // if (!N_rst) begin
-            // pattern[39:0]=40'b0000000000000000000111100000000000000000;
+        // if (!N_rst) begin00000111100000000000000000;
         //     pattern[79:40]=40'b0000000000000000011000011100000000000000;
         //     pattern[119:80]=40'b1111111111111111100000000011111111111111;
         //     pattern[159:120]=40'b0000000000000000000000110000000000000000;
@@ -58,12 +69,14 @@ module Ground (
         // end
         if (game_status) begin
             if (row_addr>=10'd400 && row_addr<10'd408) begin
-                px<=pattern[(col_addr%10'd40+ground_position+(row_addr-10'd400)*40)%10'd320];
+                //ground_position=(ground_position+speed)%10'd40;
+                px <= pattern[(col_addr%10'd40+ground_position+(row_addr-10'd400)*40)%10'd320];
                 //px <= 1'b1;
             end else begin
                 px <= 1'b0;
             end
-            ground_position<=(ground_position+speed)%10'd40;
+            
+            
             //NO NEED:
             // if(ground_position+speed<3'd40)begin
             //     ground_position<=ground_position+speed;
@@ -74,8 +87,7 @@ module Ground (
             // end
             // pattern[319:0]=px[319:0];
         end else begin
-            ground_position<=6'b0;
-            speed<=1'd4;
+            speed<=10'd4;
             // px[316:4]=pattern[315:0];
             // px[3:0]=pattern[319:316];
             pattern[39:0]<=40'b0000000000000000000111100000000000000000;
@@ -85,15 +97,15 @@ module Ground (
             pattern[199:160]<=40'b0000000111000000000000000000000000000000;
             pattern[239:200]<=40'b1000000000000000000000000000000000111111;
             pattern[279:240]<=40'b0000000000000000000000011110000000000000;
-            pattern[319:280]<=40'b0000000000000000000000000000000000000000;
+            pattern[319:280]<=40'b0111100000000000000000000000000000000000;
         end
     end
     
-    //Maybe we don't need this:
     initial begin
-        speed<=1'd4;
         ground_position<=6'b0;
     end
+    
+    //Maybe we don't need this:
 
 endmodule
 

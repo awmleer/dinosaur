@@ -25,6 +25,11 @@ module Jump (
     output reg game_status
     );
     
+    initial begin
+        // game_status<=1'b0;
+        game_status<=1'b0;//for DEBUG
+        dinosaur_height<=6'b0;
+    end
     always @(posedge CLK) begin
         if (game_status) begin
             if (button_jump) begin//for DEBUG
@@ -44,10 +49,6 @@ module Jump (
         end
     end
     
-    initial begin
-        // game_status<=1'b0;
-        game_status<=1'b0;//for DEBUG
-        dinosaur_height<=6'b0;
-    end
+ 
     
 endmodule

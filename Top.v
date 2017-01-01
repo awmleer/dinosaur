@@ -52,7 +52,7 @@ module Top(
     Jump jump (.CLK(CLK),.button_jump(BTN_JUMP[0]),.dinosaur_height(dinosaur_height),.game_status(game_status));
 
     wire px_ground;
-    Ground ground (.CLK(clkdiv[0]),.row_addr(row_addr),.col_addr(col_addr),.ground_position(ground_position),.game_status(game_status),.speed(speed),.px(px_ground));
+    Ground ground (.clkdiv(clkdiv),.row_addr(row_addr),.col_addr(col_addr),.ground_position(ground_position),.game_status(game_status),.speed(speed),.px(px_ground));
 
 
     //wire [11:0] vga_data;
