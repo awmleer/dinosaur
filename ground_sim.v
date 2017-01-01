@@ -54,7 +54,7 @@ module ground_sim;
 		N_rst = 0;
 		row_addr = 0;
 		col_addr = 0;
-		game_status = 0;
+		game_status = 1;
 
 		// Wait 100 ns for global reset to finish
 		#100;

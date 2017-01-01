@@ -18,7 +18,7 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module Vga (vga_clk,clrn,row_addr,col_addr,rdn,r,g,b,hs,vs,px_ground,px); // vgac
+module Vga (vga_clk,clrn,row_addr,col_addr,rdn,r,g,b,hs,vs,px_ground,px_dinosaur,px); // vgac
    //input     [11:0] d_in;     // bbbb_gggg_rrrr, pixel
    input            vga_clk;  // 25MHz
    input            clrn;

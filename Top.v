@@ -25,6 +25,9 @@ module Top(
     input [15:0]SW,
     output hs,
     output vs,
+    //output wire px,
+    //output wire px_dinosaur,
+    //output wire px_ground,
     output [3:0] r,
     output [3:0] g,
     output [3:0] b
@@ -50,7 +53,7 @@ module Top(
     AntiJitter #(4) a0[15:0](.clk(clkdiv[0]), .I(SW), .O(SW_OK));//for DEBUG
 
     wire px_dinosaur;
-    Jump jump (.fresh(vs),.CLK(CLK),.button_jump(START),.RESET(RESET),.game_status(game_status),.px(px_dinosaur));
+    Jump jump (.fresh(vs),.row_addr(row_addr),.col_addr(col_addr),.CLK(CLK),.button_jump(SW_OK[1]),.RESET(SW_OK[2]),.game_status(game_status),.px(px_dinosaur));
 
     wire px_ground;
     Ground ground (.clkdiv(clkdiv),.fresh(vs),.row_addr(row_addr),.col_addr(col_addr),.ground_position(ground_position),.game_status(game_status),.speed(speed),.px(px_ground));
@@ -59,6 +62,7 @@ module Top(
 
     //wire [11:0] vga_data;
     //assign vga_data[11:0]=12'b101100000011;//for DEBUG
+    wire px;
     Vga vga (
     .vga_clk(clkdiv[1]),
     .clrn(SW_OK[0]),
@@ -70,7 +74,9 @@ module Top(
     .vs(vs),
     .row_addr(row_addr),
     .col_addr(col_addr),
-    .px_ground(px_ground)
+    .px_dinosaur(px_dinosaur),
+    .px_ground(px_ground),
+    .px(px)
     );
 
 

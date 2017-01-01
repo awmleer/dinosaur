@@ -4,7 +4,7 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   17:32:02 12/30/2016
+// Create Date:   18:17:33 01/01/2017
 // Design Name:   Top
 // Module Name:   C:/Users/CST/Desktop/dinosaur/top_sim.v
 // Project Name:  dinosaur
@@ -26,7 +26,8 @@ module top_sim;
 
 	// Inputs
 	reg CLK;
-	reg BTN_JUMP;
+	reg START;
+	reg RESET;
 	reg [15:0] SW;
 
 	// Outputs
@@ -35,38 +36,41 @@ module top_sim;
 	wire [3:0] r;
 	wire [3:0] g;
 	wire [3:0] b;
-	wire BUZZER;
-    wire [31:0]clkdiv;
-    wire rdn;
-    wire [15:0] SW_OK;
-    
+    wire px;
+    wire px_dinosaur;
+    wire px_ground;
+
 	// Instantiate the Unit Under Test (UUT)
 	Top uut (
 		.CLK(CLK), 
-		.BTN_JUMP(BTN_JUMP), 
+		.START(START), 
+		.RESET(RESET), 
 		.SW(SW), 
 		.hs(hs), 
 		.vs(vs), 
 		.r(r), 
 		.g(g), 
-		.b(b),
-        .clkdiv(clkdiv),
-        .rdn(rdn),
-        .SW_OK(SW_OK),
-		.BUZZER(BUZZER)
+        .px(px),
+        .px_dinosaur(px_dinosaur),
+        .px_ground(px_ground),
+		.b(b)
 	);
 
 	initial begin
 		// Initialize Inputs
 		CLK = 0;
-		BTN_JUMP = 0;
 		SW = 0;
+        RESET=0;
+        START=0;
 
 		// Wait 100 ns for global reset to finish
 		#30;
         SW[0]=1;
-        #30;
-        SW[0]=0;
+        
+        #50;
+        SW[2]=1;
+        #50;
+        SW[2]=0;
 
 		// Add stimulus here
         
