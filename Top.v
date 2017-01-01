@@ -36,8 +36,10 @@ module Top(
     wire [5:0] dinosaur_height;
     wire game_status;
     wire [3:0] speed;
-    wire [5:0] ground_position;
-    
+    //wire [5:0] ground_position;
+    wire [8:0] row_addr;
+    wire [9:0] col_addr;
+
     reg [31:0]clkdiv;
 	always@(posedge CLK) begin
 		clkdiv <= clkdiv + 1'b1;
@@ -49,7 +51,8 @@ module Top(
 
     Jump jump (.CLK(CLK),.button_jump(BTN_JUMP),.dinosaur_height(dinosaur_height),.game_status(game_status));
 
-    Ground ground (.CLK(CLK),.ground_position(ground_position),.game_status(game_status),.speed(speed));
+    wire px_ground;
+    Ground ground (.CLK(clkdiv[0]),.row_addr(row_addr),.col_addr(col_addr),.ground_position(ground_position),.game_status(game_status),.speed(speed),.px(px_ground));
 
 
     //wire [11:0] vga_data;
@@ -62,7 +65,8 @@ module Top(
     .b(b),
     .hs(hs),
     .rdn(rdn),
-    .vs(vs)
+    .vs(vs),
+    .px_ground(px_ground)
     );
 
 

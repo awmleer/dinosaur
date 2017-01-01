@@ -31,13 +31,14 @@ module Jump (
                 dinosaur_height<=6'b000101;
             end
             if( !(&dinosaur_height[5:0]) ) begin
-                dinosaur_height<=dinosaur_height+1'b1;//todo 需要加速度
+                dinosaur_height<=dinosaur_height+1'b1;//todo ?要??俣?            
             end
         end
     end
     
     initial begin
-        game_status<=1'b0;
+        // game_status<=1'b0;
+        game_status<=1'b1;//for DEBUG
         dinosaur_height<=6'b0;
     end
     
