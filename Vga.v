@@ -29,7 +29,7 @@ module Vga (vga_clk,clrn,row_addr,col_addr,rdn,r,g,b,hs,vs,px_ground,px); // vga
    output wire [3:0] r,g,b;
    output reg       rdn;      // read pixel RAM (active_low)
    output reg       hs,vs;    // horizontal and vertical synchronization
-   output reg px; //for DEBUG (normally not output)
+   output wire px; //for DEBUG (normally not output)
    // h_count: VGA horizontal counter (0-799)
    reg [9:0] h_count; // VGA horizontal counter (0-799): pixels
    always @ (posedge vga_clk) begin

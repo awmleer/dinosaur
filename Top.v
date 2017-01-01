@@ -66,6 +66,8 @@ module Top(
     .hs(hs),
     .rdn(rdn),
     .vs(vs),
+    .row_addr(row_addr),
+    .col_addr(col_addr),
     .px_ground(px_ground)
     );
 
