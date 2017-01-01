@@ -20,7 +20,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 module Top(
     input wire CLK,
-    input wire [1:0] BTN_JUMP,
+    input wire START,
+    input wire RESET,
     input [15:0]SW,
     output hs,
     output vs,
@@ -33,7 +34,6 @@ module Top(
     //output wire rdn
     );
     
-    wire [5:0] dinosaur_height;
     wire game_status;
     wire [3:0] speed;
     //wire [5:0] ground_position;
@@ -49,10 +49,12 @@ module Top(
     //AntiJitter #(4) a0[15:0](.clk(clkdiv[15]), .I(SW), .O(SW_OK));
     AntiJitter #(4) a0[15:0](.clk(clkdiv[0]), .I(SW), .O(SW_OK));//for DEBUG
 
-    Jump jump (.CLK(CLK),.button_jump(BTN_JUMP[0]),.dinosaur_height(dinosaur_height),.game_status(game_status));
+    wire px_dinosaur;
+    Jump jump (.fresh(vs),.CLK(CLK),.button_jump(START),.RESET(RESET),.game_status(game_status),.px(px_dinosaur));
 
     wire px_ground;
     Ground ground (.clkdiv(clkdiv),.fresh(vs),.row_addr(row_addr),.col_addr(col_addr),.ground_position(ground_position),.game_status(game_status),.speed(speed),.px(px_ground));
+
 
 
     //wire [11:0] vga_data;

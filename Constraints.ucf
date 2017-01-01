@@ -49,8 +49,8 @@
 ############################################################################
     NET "CLK"                                      LOC = AC18      | IOSTANDARD = LVCMOS18 ;
     
-    NET "BTN_JUMP[0]" LOC = AE21   	| IOSTANDARD = LVCMOS18;
-    NET "BTN_JUMP[1]" LOC = AF25   	| IOSTANDARD = LVCMOS18;
+    NET "START" LOC = AE21   	| IOSTANDARD = LVCMOS18;
+    NET "RESET" LOC = AF25   	| IOSTANDARD = LVCMOS18;
     #NET "rstn"                                     LOC = W13       | IOSTANDARD = LVCMOS18 ;
 
     #NET "segled_clk"                               LOC = M24       | IOSTANDARD = LVCMOS33 ;
