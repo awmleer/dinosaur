@@ -71,7 +71,8 @@ module Ground (
         if (game_status) begin
             if (row_addr>=10'd400 && row_addr<10'd408) begin
                 //ground_position=(ground_position+speed)%10'd40;
-                px <= pattern[(col_addr%10'd40+ground_position+(row_addr-10'd400)*40)%10'd320];
+                px <= pattern[(col_addr+ground_position)%10'd40+(row_addr-10'd400)*10'd40];
+                //px <= pattern[(col_addr%10'd40+ground_position+(row_addr-10'd400)*40)%10'd320];
                 //px <= 1'b1;
             end else begin
                 px <= 1'b0;
