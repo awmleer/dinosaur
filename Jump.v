@@ -44,7 +44,8 @@ module Jump (
     end
 
     always @(posedge CLK) begin
-        if (game_status) begin
+        //TEST
+        // if (game_status) begin
             if (row_addr >= 10'd402 - height - 10'd88 && row_addr < 10'd402 - height) begin
                 if (col_addr>=10'd80 && col_addr<10'd162) begin
                     //px <= 1'b1;
@@ -55,7 +56,7 @@ module Jump (
             end else begin
                 px <= 1'b0;
             end
-        end
+        // end
     end
 
     always @(posedge RESET) begin

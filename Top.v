@@ -42,38 +42,39 @@ module Top(
 
     wire px_dinosaur;
     Jump jump (
-    .fresh(vs),
-    .row_addr(row_addr),
-    .col_addr(col_addr),
-    .CLK(CLK),
-    .button_jump(JUMP),
-    .RESET(RESET),
-    .game_status(game_status),
-    .px(px_dinosaur)
+        .fresh(vs),
+        .row_addr(row_addr),
+        .col_addr(col_addr),
+        .CLK(CLK),
+        .button_jump(JUMP),
+        .RESET(RESET),
+        .game_status(game_status),
+        .px(px_dinosaur)
     );
 
     wire px_ground;
     wire [3:0] speed;
     Ground ground (
-    .clkdiv(clkdiv),
-    .fresh(vs),
-    .row_addr(row_addr),
-    .col_addr(col_addr),
-    .ground_position(ground_position),
-    .game_status(game_status),
-    .speed(speed),
-    .px(px_ground)
+        .clkdiv(clkdiv),
+        .fresh(vs),
+        .row_addr(row_addr),
+        .col_addr(col_addr),
+        .ground_position(ground_position),
+        .game_status(game_status),
+        .speed(speed),
+        .px(px_ground)
     );
     
     wire px_cactus;
     Cactus cactus (
-    .clkdiv(clkdiv),
-    .fresh(vs),
-    .row_addr(row_addr),
-    .col_addr(col_addr),
-    .game_status(game_status),
-    .speed(speed),
-    .px(px_cactus)
+        .clkdiv(clkdiv),
+        .RESET(RESET),
+        .fresh(vs),
+        .row_addr(row_addr),
+        .col_addr(col_addr),
+        .game_status(game_status),
+        .speed(speed),
+        .px(px_cactus)
     );
 
 
@@ -82,19 +83,19 @@ module Top(
     //assign vga_data[11:0]=12'b101100000011;//for DEBUG
     wire px;
     Vga vga (
-    .vga_clk(clkdiv[1]),
-    .clrn(SW_OK[0]),
-    .r(r),
-    .g(g),
-    .b(b),
-    .hs(hs),
-    .rdn(rdn),
-    .vs(vs),
-    .row_addr(row_addr),
-    .col_addr(col_addr),
-    .px_dinosaur(px_dinosaur),
-    .px_ground(px_ground),
-    .px(px)
+        .vga_clk(clkdiv[1]),
+        .clrn(SW_OK[0]),
+        .r(r),
+        .g(g),
+        .b(b),
+        .hs(hs),
+        .rdn(rdn),
+        .vs(vs),
+        .row_addr(row_addr),
+        .col_addr(col_addr),
+        .px_dinosaur(px_dinosaur),
+        .px_ground(px_ground),
+        .px(px)
     );
 
     always @(posedge CLK) begin
