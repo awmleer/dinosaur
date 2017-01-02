@@ -2,8 +2,8 @@
 
 module Top(
     input wire CLK,
-    input wire START,
-    input wire RESET,
+    input wire START_N,
+    input wire JUMP_N,
     input [15:0]SW,
     output hs,
     output vs,
@@ -32,9 +32,13 @@ module Top(
     wire [15:0] SW_OK;
     //AntiJitter #(4) a0[15:0](.clk(clkdiv[15]), .I(SW), .O(SW_OK));
     AntiJitter #(4) a0[15:0](.clk(clkdiv[0]), .I(SW), .O(SW_OK));//for DEBUG
+    assign wire RESET = SW_OK[2];
+    assign wire START = ~START_N;
+    assign wire JUMP = ~JUMP_N;
+
 
     wire px_dinosaur;
-    Jump jump (.fresh(vs),.row_addr(row_addr),.col_addr(col_addr),.CLK(CLK),.button_jump(SW_OK[1]),.RESET(SW_OK[2]),.game_status(game_status),.px(px_dinosaur));
+    Jump jump (.fresh(vs),.row_addr(row_addr),.col_addr(col_addr),.CLK(CLK),.button_jump(JUMP),.RESET(RESET),.game_status(game_status),.px(px_dinosaur));
 
     wire px_ground;
     wire [3:0] speed;
