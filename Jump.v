@@ -53,13 +53,9 @@ module Jump (
     always @(posedge clkdiv[0]) begin
         //TEST
         // if (game_status) begin
-            if (row_addr >= 10'd402 - height - 10'd88 && row_addr < 10'd402 - height) begin
-                if (col_addr>=10'd80 && col_addr<10'd162) begin
-                    //px <= 1'b1;
-                    px <= pattern[16'd81-(col_addr-10'd80)+(row_addr+height-10'd314)*16'd82];
-                end else begin
-                    px <= 1'b0;
-                end
+            if (row_addr >= 10'd402 - height - 10'd88 && row_addr < 10'd402 - height && col_addr>=10'd80 && col_addr<10'd162) begin
+                //px <= 1'b1;
+                px <= pattern[16'd161-col_addr+(row_addr+height-10'd314)*13'd82];
             end else begin
                 px <= 1'b0;
             end
