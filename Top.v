@@ -25,9 +25,9 @@ module Top(
     wire [9:0] col_addr;
 
     reg [31:0]clkdiv;
-	always@(posedge CLK) begin
-		clkdiv <= clkdiv + 1'b1;
-	end
+    always@(posedge CLK) begin
+        clkdiv <= clkdiv + 1'b1;
+    end
     
     wire [15:0] SW_OK;
     //AntiJitter #(4) a0[15:0](.clk(clkdiv[15]), .I(SW), .O(SW_OK));
@@ -45,7 +45,7 @@ module Top(
         .fresh(vs),
         .row_addr(row_addr),
         .col_addr(col_addr),
-        .CLK(CLK),
+        .clkdiv(clkdiv),
         .button_jump(JUMP),
         .RESET(RESET),
         .START(START),

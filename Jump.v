@@ -2,7 +2,7 @@
 
 module Jump (
     input wire fresh,
-    input wire CLK,
+    input wire [31:0] clkdiv,
     input wire button_jump,
     input wire RESET,
     input wire START,
@@ -50,7 +50,7 @@ module Jump (
         
     end
 
-    always @(posedge CLK) begin
+    always @(posedge clkdiv[0]) begin
         //TEST
         // if (game_status) begin
             if (row_addr >= 10'd402 - height - 10'd88 && row_addr < 10'd402 - height) begin
