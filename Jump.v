@@ -56,13 +56,14 @@ module Jump (
         // if (game_status) begin
             if (row_addr >= 10'd402 - height - 10'd88 && row_addr < 10'd402 - height && col_addr>=10'd80 && col_addr<10'd162) begin
                 //px <= 1'b1;
-                if (col_addr>=10'd120 && col_addr<10'd153) begin
-                    px<=1'b1;
-                end
-                else begin
-                    px<=1'b0;
-                end
-                // px <= pattern[16'd161-col_addr+(row_addr+height-10'd314)*13'd82];
+                //if (col_addr>=10'd120 && col_addr<10'd153) begin
+                //    px<=1'b1;
+                //end
+                //else begin
+                //    px<=1'b0;
+                //end
+                px <= pattern[row_addr+height-10'd314][16'd161-col_addr];
+                //px <= pattern[16'd161-col_addr+(row_addr+height-10'd314)*13'd82];
             end else begin
                 px <= 1'b0;
             end
