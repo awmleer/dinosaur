@@ -62,7 +62,7 @@ module Jump (
                 //else begin
                 //    px<=1'b0;
                 //end
-                px <= pattern[row_addr+height-10'd314][16'd161-col_addr];
+                px <= pattern[row_addr+height-10'd314][col_addr-12'd80];
                 //px <= pattern[16'd161-col_addr+(row_addr+height-10'd314)*13'd82];
             end else begin
                 px <= 1'b0;
