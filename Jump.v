@@ -5,6 +5,7 @@ module Jump (
     input wire CLK,
     input wire button_jump,
     input wire RESET,
+    input wire START,
     input wire [8:0] row_addr,
     input wire [9:0] col_addr,
     output reg px,
@@ -39,6 +40,11 @@ module Jump (
                 end else begin
                     jump_time<=jump_time+1'b1;
                 end
+            end
+        end else begin //if pausing
+            if (RESET || START) begin
+                jump_time<=12'b0;
+                jumping<=1'b0;
             end
         end
         

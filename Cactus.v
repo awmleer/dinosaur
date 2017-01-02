@@ -3,6 +3,7 @@
 module Cactus(
     input wire [31:0] clkdiv,
     input wire RESET,
+    input wire START,
     input wire [8:0] row_addr,
     input wire [9:0] col_addr,
     input wire game_status,
@@ -20,7 +21,7 @@ module Cactus(
         if (game_status) begin
             position<=(position+speed)%10'd640;
         end else begin
-            if (RESET) begin
+            if (RESET || START) begin
                 position <=10'b0;
             end
         end

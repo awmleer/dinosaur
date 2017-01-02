@@ -48,6 +48,7 @@ module Top(
         .CLK(CLK),
         .button_jump(JUMP),
         .RESET(RESET),
+        .START(START),
         .game_status(game_status),
         .px(px_dinosaur)
     );
@@ -69,6 +70,7 @@ module Top(
     Cactus cactus (
         .clkdiv(clkdiv),
         .RESET(RESET),
+        .START(START),
         .fresh(vs),
         .row_addr(row_addr),
         .col_addr(col_addr),
