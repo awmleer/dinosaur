@@ -32,17 +32,49 @@ module Top(
     wire [15:0] SW_OK;
     //AntiJitter #(4) a0[15:0](.clk(clkdiv[15]), .I(SW), .O(SW_OK));
     AntiJitter #(4) a0[15:0](.clk(clkdiv[0]), .I(SW), .O(SW_OK));//for DEBUG
-    assign wire RESET = SW_OK[2];
-    assign wire START = ~START_N;
-    assign wire JUMP = ~JUMP_N;
+    wire RESET;
+    assign RESET = SW_OK[2];
+    wire START;
+    assign START = ~START_N;
+    wire JUMP;
+    assign JUMP = ~JUMP_N;
 
 
     wire px_dinosaur;
-    Jump jump (.fresh(vs),.row_addr(row_addr),.col_addr(col_addr),.CLK(CLK),.button_jump(JUMP),.RESET(RESET),.game_status(game_status),.px(px_dinosaur));
+    Jump jump (
+    .fresh(vs),
+    .row_addr(row_addr),
+    .col_addr(col_addr),
+    .CLK(CLK),
+    .button_jump(JUMP),
+    .RESET(RESET),
+    .game_status(game_status),
+    .px(px_dinosaur)
+    );
 
     wire px_ground;
     wire [3:0] speed;
-    Ground ground (.clkdiv(clkdiv),.fresh(vs),.row_addr(row_addr),.col_addr(col_addr),.ground_position(ground_position),.game_status(game_status),.speed(speed),.px(px_ground));
+    Ground ground (
+    .clkdiv(clkdiv),
+    .fresh(vs),
+    .row_addr(row_addr),
+    .col_addr(col_addr),
+    .ground_position(ground_position),
+    .game_status(game_status),
+    .speed(speed),
+    .px(px_ground)
+    );
+    
+    wire px_cactus;
+    Cactus cactus (
+    .clkdiv(clkdiv),
+    .fresh(vs),
+    .row_addr(row_addr),
+    .col_addr(col_addr),
+    .game_status(game_status),
+    .speed(speed),
+    .px(px_cactus)
+    );
 
 
 
