@@ -23,7 +23,7 @@ module Jump (
         //jumping<=1'b0;
     //end
 
-    assign height = (jump_time*12'd60 - jump_time*jump_time) / 12'd4;
+    assign height = (jump_time*12'd60 - jump_time*jump_time) / 12'd6;
 
     //for every frame
     always @(negedge fresh) begin
@@ -33,7 +33,7 @@ module Jump (
                jumping<=1'b1;
             end
             if (jumping) begin
-                if (jump_time>=12'd30) begin
+                if (jump_time>=12'd60) begin
                     jump_time<=12'b0;
                     jumping<=1'b0;
                 end else begin

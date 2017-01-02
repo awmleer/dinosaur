@@ -20,7 +20,9 @@ module Cactus(
         if (game_status) begin
             position<=(position+speed)%10'd640;
         end else begin
-            position <=10'b0;
+            if (RESET) begin
+                position <=10'b0;
+            end
         end
     end
 
