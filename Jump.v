@@ -1,23 +1,5 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date:    15:42:23 12/30/2016 
-// Design Name: 
-// Module Name:    Jump 
-// Project Name: 
-// Target Devices: 
-// Tool versions: 
-// Description: 
-//
-// Dependencies: 
-//
-// Revision: 
-// Revision 0.01 - File Created
-// Additional Comments: 
-//
-//////////////////////////////////////////////////////////////////////////////////
+
 module Jump (
     input wire fresh,
     input wire CLK,
@@ -26,7 +8,7 @@ module Jump (
     input wire [8:0] row_addr,
     input wire [9:0] col_addr,
     output reg px,
-    output reg game_status
+    input wire game_status
     );
     
     reg [11:0] jump_time;
@@ -76,8 +58,7 @@ module Jump (
         end
     end
 
-    always @(posedge button_jump) begin
-        if (RESET) begin
+    always @(posedge RESET) begin
         pattern[81:0]<=82'b0000000000_0000000000_0000000000_0000000000_0000000011_1111111111_1111111111_1111111100_00;
         pattern[163:82]<=82'b0000000000_0000000000_0000000000_0000000000_0000000011_1111111111_1111111111_1111111100_00;
         pattern[245:164]<=82'b0000000000_0000000000_0000000000_0000000000_0000000011_1111111111_1111111111_1111111100_00;
@@ -166,13 +147,6 @@ module Jump (
         pattern[7051:6970]<=82'b0000000000_0000000000_1111111100_0000000000_1111111100_0000000000_0000000000_0000000000_00;
         pattern[7133:7052]<=82'b0000000000_0000000000_1111111100_0000000000_1111111100_0000000000_0000000000_0000000000_00;
         pattern[7215:7134]<=82'b0000000000_0000000000_1111111100_0000000000_1111111100_0000000000_0000000000_0000000000_00;
-        game_status<=1'b0;//for DEBUG
-        end
-        if (button_jump) begin
-            if(game_status==1'b0)begin
-                game_status<=1'b1;
-            end
-        end
     end
     
  

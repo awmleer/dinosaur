@@ -1,23 +1,5 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date:    15:41:41 12/30/2016 
-// Design Name: 
-// Module Name:    Top 
-// Project Name: 
-// Target Devices: 
-// Tool versions: 
-// Description: 
-//
-// Dependencies: 
-//
-// Revision: 
-// Revision 0.01 - File Created
-// Additional Comments: 
-//
-//////////////////////////////////////////////////////////////////////////////////
+
 module Top(
     input wire CLK,
     input wire START,
@@ -37,9 +19,8 @@ module Top(
     //output wire rdn
     );
     
-    wire game_status;
-    wire [3:0] speed;
-    //wire [5:0] ground_position;
+    reg game_status;
+    reg trigger_start;
     wire [8:0] row_addr;
     wire [9:0] col_addr;
 
@@ -56,6 +37,7 @@ module Top(
     Jump jump (.fresh(vs),.row_addr(row_addr),.col_addr(col_addr),.CLK(CLK),.button_jump(SW_OK[1]),.RESET(SW_OK[2]),.game_status(game_status),.px(px_dinosaur));
 
     wire px_ground;
+    wire [3:0] speed;
     Ground ground (.clkdiv(clkdiv),.fresh(vs),.row_addr(row_addr),.col_addr(col_addr),.ground_position(ground_position),.game_status(game_status),.speed(speed),.px(px_ground));
 
 
@@ -79,10 +61,35 @@ module Top(
     .px(px)
     );
 
+    always @(posedge CLK) begin
+        if (START) begin
+            if(game_status==1'b0)begin
+                trigger_start<=1'b1;
+            end
+        end
+
+        //only do operation in the blanking period
+        if (vs==1'b0) begin
+            if (trigger_start==1'b1) begin
+                if (game_status==1'b0) begin
+                    game_status<=1'b1;
+                end else begin
+                    trigger_start<=1'b0;
+                end
+            end
+        end
+
+
+        if (RESET) begin
+            game_status<=1'b0;
+            trigger_start<=1'b0;
+        end
+    end
+
 
     //assign BUZZER=1'b1;
-    initial begin
-        clkdiv<=32'b0;
-    end
+    // initial begin
+    //     clkdiv<=32'b0;
+    // end
 
 endmodule
