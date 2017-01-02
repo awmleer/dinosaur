@@ -19,7 +19,7 @@ module Cactus(
 
     always @(negedge fresh) begin
         if (game_status) begin
-            position<=(position+speed)%10'd640;
+            position<=(position+speed)%(10'd640+10'd60);
         end else begin
             if (RESET || START) begin
                 position <=10'b0;
@@ -31,7 +31,7 @@ module Cactus(
         //TEST
         // if (game_status) begin
             if (row_addr>=10'd344 && row_addr<10'd402) begin
-                if (col_addr>=10'd640 - position && col_addr<10'd700 - position) begin
+                if (col_addr>=(10'd640 > position ? 10'd640 - position : 10'd0) && col_addr<10'd700 - position) begin
                     px <= pattern[(col_addr + position - 16'd640) + (row_addr-16'd344) * 16'd60];
                 end else begin
                     px <= 1'b0;
