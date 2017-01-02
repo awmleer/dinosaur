@@ -24,13 +24,13 @@ module Jump (
         //jumping<=1'b0;
     //end
 
-    assign height = (jump_time*12'd60 - jump_time*jump_time) / 12'd6;
+    assign height = (jump_time*12'd60 - jump_time*jump_time) / 3'd6;
 
     //for every frame
     always @(negedge fresh) begin
         //jump operation
         if (game_status) begin
-            if (button_jump) begin
+            if (button_jump && jumping==1'b0) begin
                jumping<=1'b1;
             end
             if (jumping) begin
