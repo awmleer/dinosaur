@@ -95,6 +95,7 @@ module Top(
         .col_addr(col_addr),
         .px_dinosaur(px_dinosaur),
         .px_ground(px_ground),
+        .px_cactus(px_cactus),
         .px(px)
     );
 
