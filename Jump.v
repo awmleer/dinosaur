@@ -45,7 +45,7 @@ module Jump (
             if (RESET || START) begin
                 jump_time<=12'b0;
                 jumping<=1'b0;
-            end[]
+            end
         end
         
     end
