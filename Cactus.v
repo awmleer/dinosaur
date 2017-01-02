@@ -28,6 +28,8 @@ module Cactus(
             if (row_addr>=10'd344 && row_addr<10'd402) begin
                 if (col_addr>=10'd640 - position && col_addr<10'd700 - position) begin
                     px <= pattern[(col_addr + position - 16'd640) + (row_addr-16'd344) * 16'd60];
+                end else begin
+                    px <= 1'b0;
                 end
             end else begin
                 px <= 1'b0;

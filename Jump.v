@@ -23,7 +23,7 @@ module Jump (
         //jumping<=1'b0;
     //end
 
-    assign height = (jump_time*12'd30 - jump_time*jump_time) / 12'd2;
+    assign height = (jump_time*12'd60 - jump_time*jump_time) / 12'd4;
 
     //for every frame
     always @(negedge fresh) begin
@@ -32,15 +32,16 @@ module Jump (
             if (button_jump) begin
                jumping<=1'b1;
             end
-        end
-        if (jumping) begin
-            if (jump_time>=12'd30) begin
-                jump_time<=12'b0;
-                jumping<=1'b0;
-            end else begin
-                jump_time<=jump_time+1'b1;
+            if (jumping) begin
+                if (jump_time>=12'd30) begin
+                    jump_time<=12'b0;
+                    jumping<=1'b0;
+                end else begin
+                    jump_time<=jump_time+1'b1;
+                end
             end
         end
+        
     end
 
     always @(posedge CLK) begin

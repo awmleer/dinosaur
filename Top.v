@@ -99,11 +99,18 @@ module Top(
         .px(px)
     );
 
+    wire trigger_stop;
+    assign trigger_stop = px_dinosaur && px_cactus;
+
     always @(posedge CLK) begin
         if (START) begin
             if(game_status==1'b0)begin
                 trigger_start<=1'b1;
             end
+        end
+
+        if (trigger_stop) begin
+            game_status<=1'b0;
         end
 
         //only do operation in the blanking period
