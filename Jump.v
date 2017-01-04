@@ -18,7 +18,7 @@ module Jump (
     reg jumping;
 
     //height is only associated with the value of jump_time
-    assign height = (jump_time*12'd60 - jump_time*jump_time) / 3'd6;
+    assign height = (jump_time*12'd40 - jump_time*jump_time) / 2'd2;
 
     //for every frame
     always @(negedge fresh) begin //negedge guarantees the operation are done in the blanking period
@@ -28,7 +28,7 @@ module Jump (
                jumping<=1'b1;
             end
             if (jumping) begin
-                if (jump_time>=12'd60) begin
+                if (jump_time>=12'd40) begin
                     jump_time<=12'b0;
                     jumping<=1'b0;
                 end else begin
