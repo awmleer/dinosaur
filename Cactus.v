@@ -21,7 +21,7 @@ module Cactus(
     reg [9:0] wait_time;
     wire [4:0] random_number;
 
-    Random random (.clk(fresh).RESET(RESET).data(random_number));
+    Random random (.clk(fresh),.RESET(RESET),.data(random_number));
 
 
     always @(negedge fresh) begin
