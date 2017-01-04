@@ -15,20 +15,13 @@ module Jump (
     reg [11:0] jump_time;
     wire [11:0] height;
     reg [0:82] pattern [0:88];
-    // reg [7215:0] pattern;
     reg jumping;
 
-    //initial begin
-        // game_status<=1'b0;
-        //game_status<=1'b0;//for DEBUG
-        //jump_time<=8'b0;
-        //jumping<=1'b0;
-    //end
-
+    //height is only associated with the value of jump_time
     assign height = (jump_time*12'd60 - jump_time*jump_time) / 3'd6;
 
     //for every frame
-    always @(negedge fresh) begin
+    always @(negedge fresh) begin //negedge guarantees the operation are done in the blanking period
         //jump operation
         if (game_status) begin
             if (button_jump && jumping==1'b0) begin
@@ -47,30 +40,22 @@ module Jump (
                 jump_time<=12'b0;
                 jumping<=1'b0;
             end
+            //if neither RESET nor START, do nothing to keep the current position of the dinosaur
         end
         
     end
 
     always @(posedge clkdiv[0]) begin
-        //TEST
-        // if (game_status) begin
-            if (row_addr >= 10'd402 - height - 10'd88 && row_addr < 10'd402 - height && col_addr>=10'd80 && col_addr<10'd162) begin
-                //px <= 1'b1;
-                //if (col_addr>=10'd120 && col_addr<10'd153) begin
-                //    px<=1'b1;
-                //end
-                //else begin
-                //    px<=1'b0;
-                //end
-                px <= pattern[row_addr+height-10'd314][col_addr-12'd80];
-                //px <= pattern[16'd161-col_addr+(row_addr+height-10'd314)*13'd82];
-            end else begin
-                px <= 1'b0;
-            end
-        // end
+        //caculate the value of px based on row_addr and col_addr
+        if (row_addr >= 10'd402 - height - 10'd88 && row_addr < 10'd402 - height && col_addr>=10'd80 && col_addr<10'd162) begin
+            px <= pattern[row_addr+height-10'd314][col_addr-12'd80];
+        end else begin
+            px <= 1'b0;
+        end
     end
 
     always @(posedge RESET) begin
+        //use ram to store the pattern of dinosaur (row 88, col 82)
         pattern[0]<=82'b0000000000_0000000000_0000000000_0000000000_0000000011_1111111111_1111111111_1111111100_00;
         pattern[1]<=82'b0000000000_0000000000_0000000000_0000000000_0000000011_1111111111_1111111111_1111111100_00;
         pattern[2]<=82'b0000000000_0000000000_0000000000_0000000000_0000000011_1111111111_1111111111_1111111100_00;

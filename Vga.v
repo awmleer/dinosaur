@@ -64,18 +64,4 @@ module Vga (vga_clk,clrn,row_addr,col_addr,rdn,r,g,b,hs,vs,px_ground,px_dinosaur
         col_addr <=  col;      // pixel ram col address
     end
     
-    //reg px;
-    // always @ (posedge vga_clk) begin
-    //     // row_addr =  row[8:0]; // pixel ram row address
-    //     // col_addr =  col;      // pixel ram col address
-    //     //px calculate
-    //     //1 stands for black, 0 stands for white
-    //     //ground area
-    //     //px = 1'b0;
-    //     if (row_addr>=10'd400 && row_addr<10'd408) begin
-    //         px = 1'b1;
-    //     end else begin
-    //         px = 1'b0;
-    //     end
-    // end
 endmodule
