@@ -21,6 +21,9 @@ module Top(
     
     reg game_status;
     reg trigger_start;
+    
+    wire [8:0] row_addr;
+    wire [9:0] col_addr;
 
 
     //frequency divider
@@ -89,8 +92,6 @@ module Top(
 
     //Vga module
     wire px;
-    wire [8:0] row_addr;
-    wire [9:0] col_addr;
     Vga vga (
         .vga_clk(clkdiv[1]),
         .clrn(SW_OK[0]),
