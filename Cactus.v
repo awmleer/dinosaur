@@ -19,14 +19,17 @@ module Cactus(
     reg [1:0] cactus_type;
     reg [9:0] wait_counter;
     reg [9:0] wait_time;
+    wire [4:0] random_number;
+
+    Random random (.clk(fresh).RESET(RESET).data(random_number));
 
 
     always @(negedge fresh) begin
         if (game_status) begin
             if (position==10'b0) begin
                 if (wait_counter!=10'b0) begin
-                    wait_time<=$random%300;//wait time randoms from 0s to 5s (60 frames every second)
-                    cactus_type<=$random(1)%3;//random a cactus type
+                    wait_time<=random_number*10'd10;//wait time randoms from 0s to 5s (60 frames every second)
+                    cactus_type<=random_number%3;//random a cactus type
                 end else begin
                     wait_counter<=wait_counter+1;
                     if (wait_counter>=wait_time) begin//if reached the wait time

@@ -67,7 +67,6 @@ module Top(
         .fresh(vs),
         .row_addr(row_addr),
         .col_addr(col_addr),
-        .ground_position(ground_position),
         .game_status(game_status),
         .speed(speed),
         .px(px_ground)
