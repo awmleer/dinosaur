@@ -21,6 +21,4 @@ module Random(
         else
             data <= data_next;
 
-    endmodule
-
 endmodule
