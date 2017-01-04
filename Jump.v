@@ -14,7 +14,7 @@ module Jump (
     
     reg [11:0] jump_time;
     wire [11:0] height;
-    reg [0:82] pattern [0:88];
+    reg [0:82] pattern [0:87];
     reg jumping;
 
     //height is only associated with the value of jump_time

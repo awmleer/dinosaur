@@ -98,7 +98,6 @@ module Top(
         .g(g),
         .b(b),
         .hs(hs),
-        .rdn(rdn),
         .vs(vs),
         .row_addr(row_addr),
         .col_addr(col_addr),
