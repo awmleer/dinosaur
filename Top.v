@@ -88,7 +88,15 @@ module Top(
         .px(px_cactus)
     );
 
-
+	 wire px_frame;
+	 Frame frame(
+	     .clkdiv(clkdiv),
+        .RESET(RESET),
+        .row_addr(row_addr),
+        .col_addr(col_addr),
+        .game_status(game_status),
+		  .px(px_frame)
+		);
 
     //Vga module
     wire px;
@@ -106,6 +114,7 @@ module Top(
         .px_dinosaur(px_dinosaur),
         .px_ground(px_ground),
         .px_cactus(px_cactus),
+		  .px_frame(px_frame),
         .px(px)
     );
 
