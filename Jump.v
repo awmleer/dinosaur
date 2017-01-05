@@ -57,7 +57,7 @@ module Jump (
     always @(posedge clkdiv[0]) begin
         //caculate the value of px based on row_addr and col_addr
         //body part
-        if (row_addr >= 10'd402 - height - 10'd74 && row_addr < 10'd402 - height && col_addr>=10'd80 && col_addr<10'd162) begin
+        if (row_addr >= 10'd402 - height - 10'd88 && row_addr < 10'd402 - height -10'd14 && col_addr>=10'd80 && col_addr<10'd162) begin
             if (game_status) begin //if running
                 px <= body_run[row_addr+height-10'd314][col_addr-12'd80];
             end else begin //if it stops
@@ -69,7 +69,7 @@ module Jump (
         end
 
         //feet part
-        if (row_addr >= 10'd402 - height - 10'd88 && row_addr < 10'd402 - height -10'd74 && col_addr>=10'd80 && col_addr<10'd162) begin
+        if (row_addr >= 10'd402 - height - 10'd14 && row_addr < 10'd402 - height && col_addr>=10'd80 && col_addr<10'd162) begin
             if (game_status && height==0) begin
                 if (counter[3]) begin
                     px<=feet_run_a[row_addr+height-10'd388][col_addr-12'd80];
