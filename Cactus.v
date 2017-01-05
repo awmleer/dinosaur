@@ -27,9 +27,10 @@ module Cactus(
     always @(negedge fresh) begin
         if (game_status) begin
             if (position==10'b0) begin
-                if (wait_counter!=10'b0) begin
+                if (wait_counter==10'b0) begin
                     wait_time<=random_number*10'd10;//wait time randoms from 0s to 5s (60 frames every second)
                     cactus_type<=random_number%3;//random a cactus type
+                    wait_counter<=1;
                 end else begin
                     wait_counter<=wait_counter+1;
                     if (wait_counter>=wait_time) begin//if reached the wait time
@@ -43,6 +44,8 @@ module Cactus(
         end else begin
             if (RESET || START) begin
                 position <=10'b0;
+                wait_counter<=10'b0;
+                wait_time<=10'b0;
             end
         end
     end
