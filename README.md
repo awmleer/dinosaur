@@ -52,7 +52,7 @@ Chrome浏览器在没有网络连接的时候，会显示一个小恐龙，点�
 
 工程一共包括六个模块，**关系**如下图：
 
-![562EF094-E3BD-47DE-B729-25F1256E7300](https://ww1.sinaimg.cn/large/006y8lVagw1fbgwtkwjhtj30vu0mmjsc.jpg)
+![B24EE13F-034A-4C7E-8689-6E43D745522E](https://ww4.sinaimg.cn/large/006y8lVagw1fbh36ui9uij30vu0mmmy4.jpg)
 
 下面是各个模块的具体介绍
 
@@ -64,7 +64,7 @@ Chrome浏览器在没有网络连接的时候，会显示一个小恐龙，点�
 
 ## Top module
 
-主模块，控制游戏的**开始**(start)、**结束**(stop)、**重启**(reset)，以及**衔接**各个模块，如，把`ground`、`jump`、`cactus`的输出数据送给`vga`模块来显示在屏幕上。
+主模块，控制游戏的**开始**(start)、**结束**(stop)、**重启**(reset)，以及**衔接**各个模块，如，把`ground`、`jump`、`cactus`、`score`的输出数据送给`vga`模块来显示在屏幕上。
 
 ### 游戏的开始和结束
 
@@ -111,16 +111,16 @@ assign b = rdn ? 4'h0 : px ? 4'b0000:4'b1111; // 2-bit blue
 而`px`这根线的定义则是：
 
 ```verilog
-assign px = px_ground || px_dinosaur || px_cactus || px_frame;
+assign px = px_ground || px_dinosaur || px_cactus || px_score;
 ```
 
-也就是说，**只要**`px_ground`、`px_dinosaur`、`px_cactus`、`px_frame`其中有一个为1，`px`就会为1，使屏幕上对应的位置显示黑色像素。
+也就是说，**只要**`px_ground`、`px_dinosaur`、`px_cactus`、`px_score`其中有一个为1，`px`就会为1，使屏幕上对应的位置显示黑色像素。
 
 这个原理类似于**投影重叠**，如下图，layerA和layerB分别有一个三角形和一个长方形，因此screen上的投影图案显示的是**两个图形的叠加**。
 
 ![65EED49CF9389B25BDA79848BA0E1E10](https://ww4.sinaimg.cn/large/006y8lVagw1fbgx6avd5qj30zk0qowgf.jpg)
 
-在这个工程里，我们从`ground`、`jump`、`cactus`、`frame`这几个模块分别引了一根线到`vga`模块，并且从`vga`模块引出`col_addr`和`row_addr`这两组线，来告诉其他模块此时需要显示的**处于哪个位置的像素**，这样，其他模块只需要根据`col_addr`和`row_addr`**计算出**自己要在这个位置显示黑色还是白色像素就可以了，`vga`模块会把这些独立的图像进行**叠加**。
+在这个工程里，我们从`ground`、`jump`、`cactus`、`score`这几个模块分别引了一根线到`vga`模块，并且从`vga`模块引出`col_addr`和`row_addr`这两组线，来告诉其他模块此时需要显示的**处于哪个位置的像素**，这样，其他模块只需要根据`col_addr`和`row_addr`**计算出**自己要在这个位置显示黑色还是白色像素就可以了，`vga`模块会把这些独立的图像进行**叠加**。
 
 除此以外，我们还把`vga`模块的`vs`这根线接到了其他的模块，以便于一些操作可以控制在消隐期(blanking period)进行。
 
@@ -206,7 +206,7 @@ always @(posedge clk)
 
 
 
-## Frame module
+## Score module
 
 
 
