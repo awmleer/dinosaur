@@ -26,10 +26,10 @@ module ground_sim;
 
 	// Inputs
 	reg [31:0] clkdiv;
-	reg N_rst;
 	reg [8:0] row_addr;
 	reg [9:0] col_addr;
 	reg game_status;
+  reg fresh;
 
 	// Outputs
 	wire [5:0] ground_position;
@@ -39,22 +39,22 @@ module ground_sim;
 	// Instantiate the Unit Under Test (UUT)
 	Ground uut (
 		.clkdiv(clkdiv), 
-		.N_rst(N_rst), 
 		.row_addr(row_addr), 
 		.col_addr(col_addr), 
 		.ground_position(ground_position), 
 		.game_status(game_status), 
 		.speed(speed), 
-		.px(px)
+		.px(px),
+    .fresh(fresh)
 	);
 
 	initial begin
 		// Initialize Inputs
 		clkdiv = 0;
-		N_rst = 0;
 		row_addr = 0;
 		col_addr = 0;
-		game_status = 1;
+		game_status = 0;
+    fresh=0;
 
 		// Wait 100 ns for global reset to finish
 		#100;
@@ -69,6 +69,10 @@ module ground_sim;
 		clkdiv = clkdiv+1'b1; #10;
 		//CLK = 1; #10;
 	end
+  always begin
+    fresh=0;#30;
+    fresh=1;#30;
+  end
       
 endmodule
 

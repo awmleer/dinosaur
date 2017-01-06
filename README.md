@@ -224,9 +224,81 @@ always @(posedge clk)
 
 ## 调试及仿真
 
+### Vga
 
+```verilog
+initial begin
+    // Initialize Inputs
+    vga_clk = 0;
+    clrn = 0;
+    px_ground = 0;
+    px_score=0;
+    px_dinosaur=0;
+    px_cactus=0;
+    // Wait 100 ns for global reset to finish
+    #30;
+    clrn = 1;
+    // Add stimulus here
+end
+always begin
+    vga_clk = 0; #10;
+    vga_clk = 1; #10;
+end
+always begin
+    px_ground=0;
+    #100000;
+    px_ground=1;
+    #50000;
+end
+```
 
+![F84CCAA1-5398-46DD-B930-B2BD8C388105](https://ww4.sinaimg.cn/large/006y8lVagw1fbh3wan8l3j30qv0a0tgo.jpg)
 
+### Ground
+
+```verilog
+initial begin
+    // Initialize Inputs
+    clkdiv = 0;
+    row_addr = 0;
+    col_addr = 0;
+    game_status = 0;
+    fresh=0;
+    // Wait 100 ns for global reset to finish
+    #100;
+    game_status =1;
+end
+always begin
+    clkdiv = clkdiv+1'b1; #10;
+end
+always begin
+    fresh=0;#30;
+    fresh=1;#30;
+end
+```
+
+![2320E9E1-E58A-4DAC-99D8-10BDE0EBECBD](https://ww1.sinaimg.cn/large/006y8lVagw1fbh4c1734oj30qe066419.jpg)
+
+### Random
+
+```verilog
+initial begin
+    // Initialize Inputs
+    clk = 0;
+    RESET = 0;
+    // Wait 100 ns for global reset to finish
+    #30;
+    RESET=1;
+    #30;
+    RESET=0;
+end
+always begin
+      clk = 0; #10;
+      clk = 1; #10;
+end
+```
+
+![C5F95795-89C4-45C7-BA9F-2D4BF46324E3](https://ww1.sinaimg.cn/large/006y8lVagw1fbh427kkzxj30pu03ldgy.jpg)
 
 
 

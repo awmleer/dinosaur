@@ -82,7 +82,7 @@ module Top(
         .fresh(vs),
         .row_addr(row_addr),
         .col_addr(col_addr),
-        .game_status(game_status),
+        .game_status(game_status),  
         .speed(speed),
         .px(px_cactus)
     );
