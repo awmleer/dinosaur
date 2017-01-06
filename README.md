@@ -42,13 +42,31 @@ Chrome浏览器在没有网络连接的时候，会显示一个小恐龙，点�
 
 输入: Sword 实验平台上的按钮、拨动开关
 
-输出: VGA显示器，数码管
+输出: VGA显示器
 
 
 
 
 
 ## 模块结构
+
+工程一共包括六个模块，**关系**如下图：
+
+![F64A0101-EED8-4DB6-BE9F-281590051B7E](https://ww4.sinaimg.cn/large/006y8lVagw1fbgs45hkhtj30um0mmdgf.jpg)
+
+  
+
+下面是各个模块的具体介绍
+
+
+
+### Top
+
+主模块，控制游戏的**开始**(start)、**结束**(stop)、**重启**(reset)，以及衔接各个模块，如，把`ground`、`jump`、`cactus`的输出数据送给`vga`模块来显示在屏幕上。
+
+### Ground
+
+控制路面的显示和移动，
 
 
 
