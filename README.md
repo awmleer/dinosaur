@@ -216,7 +216,7 @@ always @(posedge clk)
 
 ## 程序流程
 
-
+![A5B24B76-B7DF-4189-A4BA-768533541D1B](https://ww2.sinaimg.cn/large/006y8lVagw1fbh18u0m9rj30ow0ew3z3.jpg)
 
 
 
@@ -232,11 +232,24 @@ always @(posedge clk)
 
 ## 组内成员分工说明及贡献比例
 
+#### 郝广博 50%
 
+- VGA模块
+- Cactus模块
+- Random模块
+- 文档书写
+- 仿真测试
+- 模块设计
 
+#### 桂晓琬 50%
 
-
-
+- Jump模块
+- Ground模块
+- Frame模块
+- 文档书写
+- 流程图制作
+- 图案设计
+- 视频制作
 
 
 
