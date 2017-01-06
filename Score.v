@@ -64,7 +64,7 @@
 `define Eight3	((`x3 <= col_addr) && (col_addr < `x3+20) && (`y2 <= row_addr) && (row_addr < `y2+4)) || ((`x3 <= col_addr) && (col_addr < `x3+20) && (`y2+18 <= row_addr) && (row_addr < `y2+22)) || ((`x3 <= col_addr) && (col_addr < `x3+20) && (`y2+36 <= row_addr) && (row_addr < `y2+40)) || ((`x3 <= col_addr) && (col_addr < `x3+4) && (`y2 <= row_addr) && (row_addr < `y2+40)) || ((`x3+16 <= col_addr) && (col_addr < `x3+20) && (`y2 <= row_addr) && (row_addr < `y2+40))
 `define Nine3	((`x3 <= col_addr) && (col_addr < `x3+20) && (`y2 <= row_addr) && (row_addr < `y2+4)) || ((`x3 <= col_addr) && (col_addr < `x3+20) && (`y2+18 <= row_addr) && (row_addr < `y2+22)) || ((`x3 <= col_addr) && (col_addr < `x3+20) && (`y2+36 <= row_addr) && (row_addr < `y2+40)) || ((`x3 <= col_addr) && (col_addr < `x3+4) && (`y2 <= row_addr) && (row_addr < `y2+22)) || ((`x3+16 <= col_addr) && (col_addr < `x3+20) && (`y2 <= row_addr) && (row_addr < `y2+40))
 
-module Frame(
+module Score(
 	input wire [31:0] clkdiv,
    input wire [8:0] row_addr,
    input wire [9:0] col_addr,

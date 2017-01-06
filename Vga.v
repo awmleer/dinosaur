@@ -7,7 +7,7 @@ module Vga (vga_clk,clrn,row_addr,col_addr,rdn,r,g,b,hs,vs,px_ground,px_dinosaur
    input wire px_ground;
    input wire px_dinosaur;
    input wire px_cactus;
-	input wire px_frame;
+   input wire px_score;
    output reg [8:0] row_addr; // pixel ram row address, 480 (512) lines
    output reg [9:0] col_addr; // pixel ram col address, 640 (1024) pixels
    //output reg [3:0] r,g,b; // red, green, blue colors
@@ -54,7 +54,7 @@ module Vga (vga_clk,clrn,row_addr,col_addr,rdn,r,g,b,hs,vs,px_ground,px_dinosaur
     assign g = rdn ? 4'h0 : px ? 4'b0000:4'b1111; // 3-bit green
     assign b = rdn ? 4'h0 : px ? 4'b0000:4'b1111; // 2-bit blue
 
-    assign px = px_ground || px_dinosaur || px_cactus || px_frame;
+    assign px = px_ground || px_dinosaur || px_cactus || px_score;
     
     // vga signals
     always @ (posedge vga_clk) begin
