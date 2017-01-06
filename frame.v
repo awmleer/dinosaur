@@ -69,6 +69,7 @@ module Frame(
    input wire [8:0] row_addr,
    input wire [9:0] col_addr,
    input wire game_status,
+	input wire START,
    //input wire fresh,
 	input wire RESET,
    output reg px
@@ -87,9 +88,12 @@ module Frame(
 	end
 
 	always @ (posedge clkdiv[0] or posedge RESET) begin
+		if(RESET==1)begin
+			px<=1'b0;
+		end
 		//score <= clkdiv[15];
-		if(`LetterS || `LetterC || `LetterO || `LetterR || `LetterE) begin
-			px=1'b1;
+		else if(`LetterS || `LetterC || `LetterO || `LetterR || `LetterE) begin
+			px<=1'b1;
 		end
 		else if(((score[3:0] == 0) && (`Zero0)) ||
 				((score[3:0] == 4'd1) && (`One0)) ||
@@ -137,31 +141,17 @@ module Frame(
 				) begin
 			px<=1'b1;
 		end
-		else if(game_status) begin
-//			if(`LettG || `LettA || `LettM || `LettE || `LettO || `LettV || `LettE2 || `LettR) begin	//display "GAME OVER"
-//  				px<=1'b0;
-			//end
-//			else begin
-//				px<=1'b0;
-//			end
-		end
-		else if(((210 <= col_addr) && (col_addr < 220) && (40 <= row_addr) && (row_addr < 440)) ||
-				((420 <= col_addr) && (col_addr < 430) && (40 <= row_addr) && (row_addr < 440)) ||
-				((210 <= col_addr) && (col_addr < 430) && (30 <= row_addr) && (row_addr < 40))	||
-				((210 <= col_addr) && (col_addr < 430) && (440 <= row_addr) && (row_addr < 450))) begin		// display the frame
-			px<=1'b1;
-		end
 		else begin
 			px<=1'b0;
 		end
 	end
 	
-	always @ (posedge clkdiv[0] or posedge RESET) begin		// a 1s_counter in BCD code, to produce score
-		if(RESET) begin
+	always @ (posedge clkdiv[0] or posedge RESET or posedge START) begin		// a 1s_counter in BCD code, to produce score
+		if(START||RESET) begin
 			score <= 0;
 			score_cnt <= 0;
 		end
-		else if(game_status) ;
+		else if(game_status==0) ;
 		else if(score_cnt < 25_000_000) score_cnt <= score_cnt + 1;
 		else begin
 			score_cnt <= 0;

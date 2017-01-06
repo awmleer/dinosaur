@@ -93,6 +93,7 @@ module Top(
         .RESET(RESET),
         .row_addr(row_addr),
         .col_addr(col_addr),
+		  .START(START),
         .game_status(game_status),
 		  .px(px_frame)
 		);
