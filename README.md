@@ -6,15 +6,15 @@ typora-copy-images-to: ipic
 
 数字逻辑课程  郝广博 桂晓琬
 
- 
+  
 
- 
+  
 
- 
+  
 
- 
+  
 
- 
+  
 
 ## 背景介绍
 
@@ -22,11 +22,11 @@ Chrome浏览器在没有网络连接的时候，会显示一个小恐龙，点�
 
 ![1150912E-B0FA-4F6E-9BA6-90FD84B8156B](https://ww3.sinaimg.cn/large/006y8lVagw1fbeebi1vxtj30yo09gwep.jpg)
 
+ 
 
+ 
 
-
-
-
+ 
 
 ## 设计说明
 
@@ -44,9 +44,11 @@ Chrome浏览器在没有网络连接的时候，会显示一个小恐龙，点�
 
 输出: VGA显示器
 
+ 
 
+ 
 
-
+ 
 
 ## 模块结构
 
@@ -56,11 +58,11 @@ Chrome浏览器在没有网络连接的时候，会显示一个小恐龙，点�
 
 下面是各个模块的具体介绍
 
- 
+  
+
+  
 
  
-
-
 
 ## Top module
 
@@ -89,6 +91,10 @@ end
 ```
 
 一个32位的分频器。
+
+  
+
+ 
 
  
 
@@ -134,9 +140,11 @@ assign px = px_ground || px_dinosaur || px_cactus || px_score;
 >
 > 屏幕高度：480px (row)
 
+ 
 
+ 
 
-
+ 
 
 ## Ground module
 
@@ -160,9 +168,11 @@ end
 
 可以在`game_status`等于1的时候，每**经过一帧**，就改变一点路面的位置。
 
+ 
 
+ 
 
-
+ 
 
 ## Jump module
 
@@ -178,7 +188,11 @@ assign height = (jump_time*12'd40 - jump_time*jump_time) / 2'd2;
 
 这样就可以比较逼真的模拟出**重力**的感觉。
 
+ 
 
+ 
+
+ 
 
 ## Cactus module
 
@@ -202,25 +216,85 @@ always @(posedge clk)
 
 比较遗憾的是，由于时间有限，我们只做了大中小三种仙人掌，没有设计更多的障碍物种类。
 
+ 
 
+ 
 
-
+ 
 
 ## Score module
 
+这个模块用于**统计并输出分数**。
 
+我们在module前利用**宏定义**``define`定义了单词“score”和四位数字0-9.
 
+此处以字母“S”为例。
 
+S是利用五个矩形简单表示的，其他字母和数字同理。
 
+```verilog
+`define LetterS ((450 <= col_addr) && (col_addr < 470) && (30 <= row_addr) && (row_addr < 34))   || ((450 <= col_addr) && (col_addr < 470) && (48 <= row_addr) && (row_addr < 52))
+|| ((450 <= col_addr) && (col_addr < 470) && (66 <= row_addr) && (row_addr < 70)) 
+|| ((450 <= col_addr) && (col_addr < 454) && (30 <= row_addr) && (row_addr < 52)) 
+|| ((466 <= col_addr) && (col_addr < 470) && (48 <= row_addr) && (row_addr < 70))
+```
 
+在每一个时钟周期，我们都会进行分数输出。
+
+如果reset，则不输出。
+
+其他情况，输出“score”和分数。分数有四位，每一位由四位二进制表示，输出时每四位判断应输出的数字。
+
+```verilog
+always @ (posedge clkdiv[0] or posedge RESET) begin
+	if(RESET==1)begin
+		px<=1'b0;//if reset , don't display the score
+	end
+	else if(`LetterS || `LetterC || `LetterO || `LetterR || `LetterE) begin
+		px<=1'b1; //display score
+	end
+	else if(((score[3:0] == 0) && (`Zero0)) ||//every 4 regs shows one number.
+			((score[3:0] == 4'd1) && (`One0)) ||
+			...
+            ) begin
+			px<=1'b1;
+		end
+		else begin
+			px<=1'b0;
+		end
+	end
+```
+
+每个时钟周期，我们都进行分数的更新。
+
+如果reset或start，分数清零。
+
+如果game over，分数不变化。
+
+如果游戏正常进行，则分数增加。特别的，由于储存方式为四位二进制表示一个十进制的数，我们需要转换成**BCD码**，即如果达到9（4‘b1001），清零当前位并进位。
+
+```verilog
+if(score[15:12] == 4'b1001) begin						
+	score[15:12] <= 0;
+end
+else score[15:12] <= score[15:12] + 1;
+```
+
+ 
+
+ 
+
+ 
 
 ## 程序流程
 
 ![A5B24B76-B7DF-4189-A4BA-768533541D1B](https://ww2.sinaimg.cn/large/006y8lVagw1fbh18u0m9rj30ow0ew3z3.jpg)
 
+ 
 
+ 
 
-
+ 
 
 ## 调试及仿真
 
@@ -300,7 +374,11 @@ end
 
 ![C5F95795-89C4-45C7-BA9F-2D4BF46324E3](https://ww1.sinaimg.cn/large/006y8lVagw1fbh427kkzxj30pu03ldgy.jpg)
 
+ 
 
+ 
+
+ 
 
 ## 组内成员分工说明及贡献比例
 
@@ -324,6 +402,11 @@ end
 - 视频制作
 
 
+ 
+
+ 
+
+ 
 
 ## 项目代码及开发历程
 
