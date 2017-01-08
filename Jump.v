@@ -33,14 +33,14 @@ module Jump (
         //jump operation
         if (game_status) begin
             if (button_jump && jumping==1'b0) begin
-               jumping<=1'b1;
+               jumping<=1'b1;//begin to jump
             end
             if (jumping) begin
-                if (jump_time>=12'd40) begin
+                if (jump_time>=12'd40) begin//reset jump operation
                     jump_time<=12'b0;
                     jumping<=1'b0;
                 end else begin
-                    jump_time<=jump_time+1'b1;
+                    jump_time<=jump_time+1'b1;//add jump_time
                 end
             end
         end else begin //if pausing
@@ -71,12 +71,14 @@ module Jump (
         //feet part
         if (row_addr >= 10'd402 - height - 10'd14 && row_addr < 10'd402 - height && col_addr>=10'd80 && col_addr<10'd162) begin
             if (game_status && height==0) begin
+                //moving feet
                 if (counter[3]) begin
                     px<=feet_run_a[row_addr+height-10'd388][col_addr-12'd80];
                 end else begin
                     px<=feet_run_b[row_addr+height-10'd388][col_addr-12'd80];
                 end
             end else begin
+                //stopped feet
                 px<=feet_stop[row_addr+height-10'd388][col_addr-12'd80];
             end
 

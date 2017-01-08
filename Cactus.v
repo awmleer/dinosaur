@@ -21,6 +21,7 @@ module Cactus(
     reg [9:0] wait_time;
     wire [4:0] random_number;
 
+    //use random module to generate pseudo random number
     Random random (.clk(fresh),.RESET(RESET),.data(random_number));
 
 
@@ -39,10 +40,10 @@ module Cactus(
                     end
                 end
             end else begin
-                position<=(position+speed)%(10'd640+10'd60);
+                position<=(position+speed)%(10'd640+10'd60);//move the cactus (same speed as the ground)
             end
         end else begin
-            if (RESET || START) begin
+            if (RESET || START) begin //reset or begin the game after it stops
                 position <=10'b0;
                 wait_counter<=10'b0;
                 wait_time<=10'b0;
@@ -51,32 +52,29 @@ module Cactus(
     end
 
     always @(posedge clkdiv[0]) begin
-        //TEST
-        // if (game_status) begin
-            if (row_addr>=10'd344 && row_addr<10'd402) begin
-                if (col_addr>=(10'd640 > position ? 10'd640 - position : 10'd0) && col_addr<10'd700 - position) begin
-                    //print dinosaur base on the value of cactus type
-                    if (cactus_type==0) begin
-                        px <= pattern0[row_addr - 16'd344][col_addr + position - 16'd640];
-                    end
-                    if (cactus_type==1) begin
-                        px <= pattern1[row_addr - 16'd344][col_addr + position - 16'd640];
-                    end
-                    if (cactus_type==2) begin
-                        px <= pattern2[row_addr - 16'd344][col_addr + position - 16'd640];
-                    end
-                    // px <= pattern[row_addr - 16'd344][col_addr + position - 16'd640];
-                end else begin
-                    px <= 1'b0;
+        if (row_addr>=10'd344 && row_addr<10'd402) begin
+            if (col_addr>=(10'd640 > position ? 10'd640 - position : 10'd0) && col_addr<10'd700 - position) begin
+                //print pattern base on the value of cactus type
+                if (cactus_type==0) begin
+                    px <= pattern0[row_addr - 16'd344][col_addr + position - 16'd640];
+                end
+                if (cactus_type==1) begin
+                    px <= pattern1[row_addr - 16'd344][col_addr + position - 16'd640];
+                end
+                if (cactus_type==2) begin
+                    px <= pattern2[row_addr - 16'd344][col_addr + position - 16'd640];
                 end
             end else begin
                 px <= 1'b0;
             end
-        // end
+        end else begin
+            px <= 1'b0;
+        end
     end
 
 
     always @(posedge RESET) begin
+        //three different cactus patterns (actually there can be more)
         //row 58
         //col 60
         pattern0[0]<=60'b0000000000_0000000000_0000000111_1110000000_0000000000_0000000000;

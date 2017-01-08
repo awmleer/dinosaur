@@ -4,19 +4,7 @@ module Top(
     input wire CLK,
     input wire START_N,//the big RED button in the arduino board
     input wire JUMP_N,//the big BLUE button in the arduino board
-    input [15:0]SW,
-    output hs,//for DEBUG
-    output vs,//for DEBUG
-    //output wire px,
-    //output wire px_dinosaur,
-    //output wire px_ground,
-    output [3:0] r,//for DEBUG
-    output [3:0] g,//for DEBUG
-    output [3:0] b//for DEBUG
-    //output wire BUZZER
-    //output reg [31:0]clkdiv,
-    //output wire [15:0] SW_OK,
-    //output wire rdn
+    input [15:0]SW
     );
     
     reg game_status;
@@ -124,7 +112,7 @@ module Top(
 
 
     always @(posedge CLK) begin
-        if (START) begin
+        if (START) begin //if button START is pressed
             if(game_status==1'b0)begin
                 trigger_start<=1'b1;
             end
@@ -138,7 +126,7 @@ module Top(
         if (vs==1'b0) begin
             if (trigger_start==1'b1) begin
                 if (game_status==1'b0) begin
-                    game_status<=1'b1;
+                    game_status<=1'b1;//begin the game
                 end else begin
                     trigger_start<=1'b0;
                 end
@@ -146,7 +134,7 @@ module Top(
         end
 
         //reset the game
-        if (RESET) begin
+        if (RESET) begin//if button RESET is pressed
             game_status<=1'b0;
             trigger_start<=1'b0;
         end

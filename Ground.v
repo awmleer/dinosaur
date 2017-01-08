@@ -8,20 +8,13 @@ module Ground (
     input wire game_status,
     input wire fresh,
     output reg [3:0] speed,
-	 //reg [319:0] pattern,
-    //output reg [319:0] px
     output reg px
     );
     reg [159:0] pattern [7:0];
 
-   // initial begin
-   //     speed<=1'd1;
-   //     ground_position<=6'b0;
-   // end
-
     always @(negedge fresh) begin
         if (game_status) begin
-            ground_position<=(ground_position+speed)%10'd160;
+            ground_position<=(ground_position+speed)%10'd160;//move the ground
         end
     end
 
@@ -29,7 +22,6 @@ module Ground (
     begin
         if (row_addr>=10'd400 && row_addr<10'd408) begin
             px <= pattern[row_addr-10'd400][(col_addr+ground_position)%10'd160];
-            //px <= 1'b1;
         end else begin
             px <= 1'b0;
         end
