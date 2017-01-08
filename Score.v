@@ -3,18 +3,8 @@
 `define LetterC ((480 <= col_addr) && (col_addr < 500) && (30 <= row_addr) && (row_addr < 34)) || ((480 <= col_addr) && (col_addr < 500) && (66 <= row_addr) && (row_addr < 70)) || ((480 <= col_addr) && (col_addr < 484) && (30 <= row_addr) && (row_addr < 70))
 `define LetterO ((510 <= col_addr) && (col_addr < 530) && (30 <= row_addr) && (row_addr < 34)) || ((510 <= col_addr) && (col_addr < 530) && (66 <= row_addr) && (row_addr < 70)) || ((510 <= col_addr) && (col_addr < 514) && (30 <= row_addr) && (row_addr < 70)) || ((526 <= col_addr) && (col_addr < 530) && (30 <= row_addr) && (row_addr < 70))
 `define LetterR ((540 <= col_addr) && (col_addr < 560) && (30 <= row_addr) && (row_addr < 34)) || ((540 <= col_addr) && (col_addr < 560) && (46 <= row_addr) && (row_addr < 50)) || ((540 <= col_addr) && (col_addr < 544) && (30 <= row_addr) && (row_addr < 70)) || ((556 <= col_addr) && (col_addr < 560) && (30 <= row_addr) && (row_addr < 50)) || ((552 <= col_addr) && (col_addr < 556) && (50 <= row_addr) && (row_addr < 54)) || ((554 <= col_addr) && (col_addr < 558) && (54 <= row_addr) && (row_addr < 58)) || ((556 <= col_addr) && (col_addr < 560) && (58 <= row_addr) && (row_addr < 70))
-`define LetterE ((570 <= col_addr) && (col_addr < 590) && (30 <= row_addr) && (row_addr < 34)) || ((570 <= col_addr) && (col_addr < 590) && (48 <= row_addr) && (row_addr < 52)) || ((570 <= col_addr) && (col_addr < 590) && (66 <= row_addr) && (row_addr < 70)) || ((570 <= col_addr) && (col_addr < 574) && (30 <= row_addr) && (row_addr < 70))
-/*
-`define LettG ((190 <= col_addr) && (col_addr < 190+20) && (220 <= row_addr) && (row_addr < 220+4)) || ((190+10 <= col_addr) && (col_addr < 190+20) && (220+18 <= row_addr) && (row_addr < 220+22)) || ((190 <= col_addr) && (col_addr < 190+20) && (220+36 <= row_addr) && (row_addr < 220+40)) || ((190 <= col_addr) && (col_addr < 190+4) && (220 <= row_addr) && (row_addr < 220+40)) || ((190+16 <= col_addr) && (col_addr < 190+20) && (220+18 <= row_addr) && (row_addr < 220+40))
-`define LettA ((220 <= col_addr) && (col_addr < 220+20) && (220+20 <= row_addr) && (row_addr < 220+24)) || ((220 <= col_addr) && (col_addr < 220+4) && (220+18 <= row_addr) && (row_addr < 220+40)) || ((220+16 <= col_addr) && (col_addr < 220+20) && (220+18 <= row_addr) && (row_addr < 220+40)) || ((220+2 <= col_addr) && (col_addr < 220+6) && (220+12 <= row_addr) && (row_addr < 220+18)) || ((220+14 <= col_addr) && (col_addr < 220+18) && (220+12 <= row_addr) && (row_addr < 220+18)) || ((220+4 <= col_addr) && (col_addr < 220+8) && (220+6 <= row_addr) && (row_addr < 220+12)) || ((220+12 <= col_addr) && (col_addr < 220+16) && (220+6 <= row_addr) && (row_addr < 220+12)) || ((220+6 <= col_addr) && (col_addr < 220+14) && (220 <= row_addr) && (row_addr < 220+6))
-`define LettM ((250 <= col_addr) && (col_addr < 250+4) && (220 <= row_addr) && (row_addr < 220+40)) || ((250+16 <= col_addr) && (col_addr < 250+20) && (220 <= row_addr) && (row_addr < 220+40)) || ((250+4 <= col_addr) && (col_addr < 250+8) && (220+6 <= row_addr) && (row_addr < 220+12)) || ((250+12 <= col_addr) && (col_addr < 250+16) && (220+6 <= row_addr) && (row_addr < 220+12)) || ((250+8 <= col_addr) && (col_addr < 250+12) && (220+12 <= row_addr) && (row_addr < 220+24))
-`define LettE ((280 <= col_addr) && (col_addr < 280 + 20) && (220 <= row_addr) && (row_addr < 220+4)) || ((280 <= col_addr) && (col_addr < 280 + 20) && (220+18 <= row_addr) && (row_addr < 220+22)) || ((280 <= col_addr) && (col_addr < 280 + 20) && (220+36 <= row_addr) && (row_addr < 220+40)) || ((280 <= col_addr) && (col_addr < 280+4) && (220 <= row_addr) && (row_addr < 220+40))
-`define LettO ((340 <= col_addr) && (col_addr < 340+20) && (220 <= row_addr) && (row_addr < 220+4)) || ((340 <= col_addr) && (col_addr < 340+20) && (220+36 <= row_addr) && (row_addr < 220+40)) || ((340 <= col_addr) && (col_addr < 340+4) && (220 <= row_addr) && (row_addr < 220+40)) || ((340+16 <= col_addr) && (col_addr < 340+20) && (220 <= row_addr) && (row_addr < 220+40))
-`define LettV ((370 <= col_addr) && (col_addr < 370+4) && (220 <= row_addr) && (row_addr < 220+20)) || ((370+16 <= col_addr) && (col_addr < 370+20) && (220 <= row_addr) && (row_addr < 220+20)) || ((370+2 <= col_addr) && (col_addr < 370+6) && (220+20 <= row_addr) && (row_addr < 220+28)) || ((370+14 <= col_addr) && (col_addr < 370+18) && (220+20 <= row_addr) && (row_addr < 220+28)) || ((370+4 <= col_addr) && (col_addr < 370+8) && (220+28 <= row_addr) && (row_addr < 220+36)) || ((370+12 <= col_addr) && (col_addr < 370+16) && (220+28 <= row_addr) && (row_addr < 220+36)) || ((370+8 <= col_addr) && (col_addr < 370+12) && (220+36 <= row_addr) && (row_addr < 220+40))
-`define LettE2 ((400 <= col_addr) && (col_addr < 400 + 20) && (220 <= row_addr) && (row_addr < 220+4)) || ((400 <= col_addr) && (col_addr < 400 + 20) && (220+18 <= row_addr) && (row_addr < 220+22)) || ((400 <= col_addr) && (col_addr < 400 + 20) && (220+36 <= row_addr) && (row_addr < 220+40)) || ((400 <= col_addr) && (col_addr < 400+4) && (220 <= row_addr) && (row_addr < 220+40))
-`define LettR ((430 <= col_addr) && (col_addr < 430+20) && (220 <= row_addr) && (row_addr < 220+4)) || ((430 <= col_addr) && (col_addr < 430+20) && (220+16 <= row_addr) && (row_addr < 220+20)) || ((430 <= col_addr) && (col_addr < 430+4) && (220 <= row_addr) && (row_addr < 220+40)) || ((430+16 <= col_addr) && (col_addr < 430+20) && (220 <= row_addr) && (row_addr < 220+20)) || ((430+12 <= col_addr) && (col_addr < 430+16) && (220+20 <= row_addr) && (row_addr < 220+24)) || ((430+14 <= col_addr) && (col_addr < 430+18) && (220+24 <= row_addr) && (row_addr < 220+28)) || ((430+16 <= col_addr) && (col_addr < 430+20) && (220+28 <= row_addr) && (row_addr < 220+40))
-*/
-`define x3 450
+`define LetterE ((570 <= col_addr) && (col_addr < 590) && (30 <= row_addr) && (row_addr < 34)) || ((570 <= col_addr) && (col_addr < 590) && (48 <= row_addr) && (row_addr < 52)) || ((570 <= col_addr) && (col_addr < 590) && (66 <= row_addr) && (row_addr < 70)) || ((570 <= col_addr) && (col_addr < 574) && (30 <= row_addr) && (row_addr < 70))`define x3 450
+
 `define x2 480
 `define x1 510
 `define x0 540
@@ -70,32 +60,26 @@ module Score(
    input wire [9:0] col_addr,
    input wire game_status,
 	input wire START,
-   //input wire fresh,
 	input wire RESET,
    output reg px
    );
-	//reg [31:0]clk;
    reg [159:0] pattern [7:0];
-   //input rst, VGA_clk, GG;
-	//input [9:0] col_addr, row_addr;
 	reg [31:0] score;
 	reg [31:0] score_cnt;
 
-	initial begin
+	initial begin//set the initial value
 		score <= 1'b0;
 		score_cnt <= 0;
-		//clk[31:0]<=clkdiv[31:0];
 	end
 
 	always @ (posedge clkdiv[0] or posedge RESET) begin
 		if(RESET==1)begin
-			px<=1'b0;
+			px<=1'b0;//if reset , don't display the score
 		end
-		//score <= clkdiv[15];
 		else if(`LetterS || `LetterC || `LetterO || `LetterR || `LetterE) begin
-			px<=1'b1;
+			px<=1'b1; //display score
 		end
-		else if(((score[3:0] == 0) && (`Zero0)) ||
+		else if(((score[3:0] == 0) && (`Zero0)) ||//every 4 regs shows ong number.
 				((score[3:0] == 4'd1) && (`One0)) ||
 				((score[3:0] == 4'd2) && (`Two0)) ||
 				((score[3:0] == 4'd3) && (`Three0)) ||
@@ -147,15 +131,15 @@ module Score(
 	end
 	
 	always @ (posedge clkdiv[0] or posedge RESET or posedge START) begin		// a 1s_counter in BCD code, to produce score
-		if(START||RESET) begin
+		if(START||RESET) begin//if reset or start, score = 0;
 			score <= 0;
 			score_cnt <= 0;
 		end
-		else if(game_status==0) ;
+		else if(game_status==0) ;//if game over, score don't change.
 		else if(score_cnt < 25_000_000) score_cnt <= score_cnt + 1;
-		else begin
+		else begin// caculate score in decimal system.
 			score_cnt <= 0;
-			if(score[3:0] == 4'b1001) begin
+			if(score[3:0] == 4'b1001) begin//if reach 9 ,carry a number.
 				score[3:0] <= 0;
 				if(score[7:4] == 4'b1001) begin
 					score[7:4] <= 0;
