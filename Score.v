@@ -3,8 +3,9 @@
 `define LetterC ((480 <= col_addr) && (col_addr < 500) && (30 <= row_addr) && (row_addr < 34)) || ((480 <= col_addr) && (col_addr < 500) && (66 <= row_addr) && (row_addr < 70)) || ((480 <= col_addr) && (col_addr < 484) && (30 <= row_addr) && (row_addr < 70))
 `define LetterO ((510 <= col_addr) && (col_addr < 530) && (30 <= row_addr) && (row_addr < 34)) || ((510 <= col_addr) && (col_addr < 530) && (66 <= row_addr) && (row_addr < 70)) || ((510 <= col_addr) && (col_addr < 514) && (30 <= row_addr) && (row_addr < 70)) || ((526 <= col_addr) && (col_addr < 530) && (30 <= row_addr) && (row_addr < 70))
 `define LetterR ((540 <= col_addr) && (col_addr < 560) && (30 <= row_addr) && (row_addr < 34)) || ((540 <= col_addr) && (col_addr < 560) && (46 <= row_addr) && (row_addr < 50)) || ((540 <= col_addr) && (col_addr < 544) && (30 <= row_addr) && (row_addr < 70)) || ((556 <= col_addr) && (col_addr < 560) && (30 <= row_addr) && (row_addr < 50)) || ((552 <= col_addr) && (col_addr < 556) && (50 <= row_addr) && (row_addr < 54)) || ((554 <= col_addr) && (col_addr < 558) && (54 <= row_addr) && (row_addr < 58)) || ((556 <= col_addr) && (col_addr < 560) && (58 <= row_addr) && (row_addr < 70))
-`define LetterE ((570 <= col_addr) && (col_addr < 590) && (30 <= row_addr) && (row_addr < 34)) || ((570 <= col_addr) && (col_addr < 590) && (48 <= row_addr) && (row_addr < 52)) || ((570 <= col_addr) && (col_addr < 590) && (66 <= row_addr) && (row_addr < 70)) || ((570 <= col_addr) && (col_addr < 574) && (30 <= row_addr) && (row_addr < 70))`define x3 450
+`define LetterE ((570 <= col_addr) && (col_addr < 590) && (30 <= row_addr) && (row_addr < 34)) || ((570 <= col_addr) && (col_addr < 590) && (48 <= row_addr) && (row_addr < 52)) || ((570 <= col_addr) && (col_addr < 590) && (66 <= row_addr) && (row_addr < 70)) || ((570 <= col_addr) && (col_addr < 574) && (30 <= row_addr) && (row_addr < 70))
 
+`define x3 450
 `define x2 480
 `define x1 510
 `define x0 540
