@@ -4,7 +4,12 @@ module Top(
     input wire CLK,
     input wire START_N,//the big RED button in the arduino board
     input wire JUMP_N,//the big BLUE button in the arduino board
-    input [15:0]SW
+    input [15:0]SW,
+    output hs,
+    output vs,
+    output [3:0] r,
+    output [3:0] g,
+    output [3:0] b
     );
     
     reg game_status;
